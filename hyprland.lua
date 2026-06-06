@@ -50,7 +50,7 @@ hl.config({
 		no_donation_nag = true,
 	},
 	scrolling = {
-		explicit_column_widths = { 0.25, 0.5, 0.75, 1.0 },
+		explicit_column_widths = " 0.25, 0.5, 0.75, 1.0 ",
 		focus_fit_method = 1,
 		wrap_focus = false,
 		wrap_swapcol = false,
@@ -111,5 +111,5 @@ require("dms/outputs")
 require("dms/layout")
 require("dms/cursor")
 require("dms/binds")
-require("dms/binds-user")
+--require("dms/binds-user")
 require("dms/windowrules")
