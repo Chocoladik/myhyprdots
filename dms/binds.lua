@@ -66,9 +66,9 @@ hl.bind(
 
 --- Window Management and Layout
 hl.bind("SUPER + G", function()
-	hl.dsp.window.float({ action = "toggle" })
-	hl.dsp.window.resize({ x = 960, y = 600, exact = true })
-	hl.dsp.window.move({ x = 550, y = 250, exact = true })
+	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+	hl.dispatch(hl.dsp.window.resize({ x = 960, y = 600, exact = true }))
+	hl.dispatch(hl.dsp.window.move({ x = 550, y = 250, exact = true }))
 end)
 
 hl.bind("SUPER + SHIFT + V", hl.dsp.focus({ window = "previous" }))
