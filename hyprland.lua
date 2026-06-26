@@ -95,6 +95,22 @@ hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "defaul
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
 hl.animation({ leaf = "border", enabled = false })
 
+hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
+hl.gesture({
+	fingers = 3,
+	direction = "left",
+	action = function()
+		hl.dispatch(hl.dsp.focus({ direction = "r" }))
+	end,
+})
+hl.gesture({
+	fingers = 3,
+	direction = "right",
+	action = function()
+		hl.dispatch(hl.dsp.focus({ direction = "l" }))
+	end,
+})
+
 hl.window_rule({ match = { class = "^(org\\.quickshell)$" }, float = true })
 hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
@@ -111,5 +127,4 @@ require("dms/outputs")
 require("dms/layout")
 require("dms/cursor")
 require("dms/binds")
---require("dms/binds-user")
 require("dms/windowrules")
