@@ -3,7 +3,7 @@ hl.config({
 	plugin = {
 		scrolloverview = {
 			gesture_distance = 300,
-			scale = 0.5,
+			scale = 0.6,
 			workspace_gap = 100,
 			layout = "vertical",
 			wallpaper = 0,

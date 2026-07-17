@@ -77,6 +77,7 @@ hl.config({
 hl.device({
 	name = "keychron-keychron-v3",
 	kb_layout = "de",
+	hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true }),
 })
 
 hl.device({
@@ -88,10 +89,10 @@ hl.exec_cmd("hyprctl keyword gestures:gesture '3, vertical, workspace'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, left, dispatcher, movefocus, r'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, right, dispatcher, movefocus, l'")
 
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "default", style = "popin" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 4, bezier = "default", style = "popin" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 6, bezier = "default", style = "popin" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 6, bezier = "default", style = "popin" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "default", style = "slidevert" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "default", style = "gnomed" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, bezier = "default", style = "gnomed" })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
 hl.animation({ leaf = "border", enabled = false })
 
