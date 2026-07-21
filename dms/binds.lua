@@ -5,7 +5,7 @@ hl.bind(
 		'hyprshot -m output -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'
 	)
 )
-hl.bind("CTRL + Space", hl.dsp.exec_cmd("quickshell -c QuickSnip -n"))
+hl.bind("SUPER + CTRL + Space", hl.dsp.exec_cmd("quickshell -c QuickSnip -n"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus Documents/"))
 hl.bind(
 	"SUPER + Print",
@@ -21,7 +21,8 @@ hl.bind("Print", hl.dsp.exec_cmd("flameshot gui"))
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("dms ipc call mpris next"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris play"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("dms ipc call mpris pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("dms ipc call mpris previous"), { locked = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 10"), { locked = true, repeating = true })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 10"), { locked = true, repeating = true })
@@ -57,7 +58,11 @@ hl.bind("SUPER + W", hl.dsp.exec_cmd("dms ipc call dankdash wallpaper"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 
 --- Keyboard and Display
-hl.bind("SUPER + B", hl.dsp.exec_cmd("sleep 0.1 && hyprctl dispatch dpms off"), { locked = true })
+hl.bind("SUPER + B", function()
+	hl.timer(function()
+		hl.dispatch(hl.dsp.dpms({ action = "disable" }))
+	end, { timeout = 300, type = "oneshot" })
+end)
 hl.bind(
 	"SUPER + Space",
 	hl.dsp.exec_cmd("hyprctl switchxkblayout at-translated-set-2-keyboard next"),
@@ -74,10 +79,10 @@ end)
 hl.bind("SUPER + SHIFT + V", hl.dsp.focus({ window = "previous" }))
 hl.bind("SUPER + Down", hl.dsp.focus({ direction = "d" }))
 hl.bind("SUPER + F", hl.dsp.layout("fit active"))
-hl.bind("SUPER + U", hl.dsp.window.move({ direction = "l" }))
-hl.bind("SUPER + I", hl.dsp.window.move({ direction = "r" }))
+hl.bind("SUPER + U", hl.dsp.layout("consume_or_expel prev"))
+hl.bind("SUPER + I", hl.dsp.layout("consume_or_expel next"))
 hl.bind("SUPER + Left", hl.dsp.focus({ direction = "l" }))
-hl.bind("SUPER + Q", hl.dsp.window.close())
+hl.bind("SUPER + CTRL + Q", hl.dsp.window.close())
 hl.bind("SUPER + R", hl.dsp.layout("colresize +conf"))
 hl.bind("SUPER + Right", hl.dsp.focus({ direction = "r" }))
 hl.bind("SUPER + Up", hl.dsp.focus({ direction = "u" }))
@@ -86,15 +91,6 @@ hl.bind("SUPER + SHIFT + Left", hl.dsp.layout("swapcol l"))
 hl.bind("SUPER + SHIFT + Right", hl.dsp.layout("swapcol r"))
 hl.bind("SUPER + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-
-hl.bind("SUPER + SHIFT + Equal", hl.dsp.layout("colresize +0.1"), { repeating = true })
-hl.bind("SUPER + SHIFT + Minus", hl.dsp.layout("colresize -0.1"), { repeating = true })
-hl.bind("SUPER + Equal", hl.dsp.window.resize({ x = 0, y = 10, percent = true, relative = true }), { repeating = true })
-hl.bind(
-	"SUPER + Minus",
-	hl.dsp.window.resize({ x = 0, y = -10, percent = true, relative = true }),
-	{ repeating = true }
-)
 
 -- Mouse Binds
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })

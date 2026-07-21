@@ -24,7 +24,7 @@ hl.config({
 	},
 	decoration = {
 		active_opacity = 1.0,
-		inactive_opacity = 0.95,
+		inactive_opacity = 0.9,
 		fullscreen_opacity = 1.0,
 		dim_inactive = true,
 		shadow = {
@@ -32,8 +32,8 @@ hl.config({
 		},
 		blur = {
 			enabled = false,
-			size = 4,
-			passes = 4,
+			size = 9,
+			passes = 3,
 			xray = false,
 			popups = true,
 		},
@@ -129,4 +129,4 @@ require("dms/layout")
 require("dms/cursor")
 require("dms/binds")
 require("dms/windowrules")
-require("scrolloverview")
+---require("scrolloverview")
