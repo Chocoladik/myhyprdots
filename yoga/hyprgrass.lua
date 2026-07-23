@@ -1,17 +1,10 @@
 hl.config({
 	plugin = {
 		hyprgrass = {
-			sensitivity = 4.0,
-			edge_margin = 40,
-			long_press_delay = 200,
+			sensitivity = 3.0,
+			edge_margin = 20,
+			long_press_delay = 100,
 			resize_on_border_long_press = true,
-			["hyprgrass-bind"] = {
-				", edge:r:l, layoutmsg, move +col",
-				", edge:l:r, layoutmsg, move -col",
-				", pinch:4:i, fullscreen",
-				", pinch:4:o, killactive",
-				", edge:d:u, exec, kill -34 $(ps -C wvkbd-deskintl)",
-			},
 		},
 	},
 })
