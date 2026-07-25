@@ -1,0 +1,8 @@
+[config]
+
+[templates.spicetify_colorful]
+input_path = '~/.config/matugen/templates/spicetify-colorful.ini'
+output_path = '~/.config/spicetify/Themes/Colorful/color.ini'
+
+# Live reload Spicetify without restarting Spotify
+post_hook = 'spicetify apply -q --no-restart'
