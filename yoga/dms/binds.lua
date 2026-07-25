@@ -91,7 +91,8 @@ hl.bind("SUPER + SHIFT + Left", hl.dsp.layout("swapcol l"))
 hl.bind("SUPER + SHIFT + Right", hl.dsp.layout("swapcol r"))
 hl.bind("SUPER + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-
+hl.bind("SUPER + Prior", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("SUPER + Next", hl.dsp.focus({ workspace = "e+1" }))
 -- Mouse Binds
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })

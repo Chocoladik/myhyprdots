@@ -71,12 +71,13 @@ hl.exec_cmd("hyprctl keyword gestures:gesture '3, vertical, workspace'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, left, dispatcher, movefocus, r'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, right, dispatcher, movefocus, l'")
 
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 6, bezier = "default", style = "popin" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "default", style = "popin" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 6, bezier = "default", style = "popin" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "default", style = "slidevert" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, bezier = "default", style = "gnomed" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 1, spring = "rubber", style = "slidevert" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, spring = "rubber", style = "gnomed" })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
 hl.animation({ leaf = "border", enabled = false })
+hl.curve("rubber", { type = "spring", mass = 1, stiffness = 190, dampening = 20 })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
 hl.gesture({
