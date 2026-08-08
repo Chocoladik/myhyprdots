@@ -1,4 +1,3 @@
--- .config/hypr/hyprland.lua
 hl.config({
 	plugin = {
 		scrolloverview = {
@@ -22,3 +21,11 @@ hl.config({
 hl.bind("XF86LaunchA", function()
 	hl.plugin.scrolloverview.overview("toggle")
 end)
+
+hl.gesture({
+	fingers = 4,
+	direction = "vertical",
+	action = function()
+		hl.plugin.scrolloverview.overview("toggle")
+	end,
+})
