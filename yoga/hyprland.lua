@@ -1,9 +1,8 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprland-session.target")
 	hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+	hl.exec_cmd("dms run")
 	hl.exec_cmd("wayland-pipewire-idle-inhibit -w")
-	hl.exec_cmd("rfkill unblock bluetooth")
-	hl.exec_cmd("hyprpm reload")
 	hl.exec_cmd("wvkbd-deskintl --hidden -L 360")
 end)
 
@@ -50,6 +49,7 @@ hl.config({
 		no_donation_nag = true,
 	},
 	scrolling = {
+		column_width = 0.75,
 		explicit_column_widths = " 0.25, 0.5, 0.75, 1.0 ",
 		focus_fit_method = 1,
 		wrap_focus = false,
@@ -71,13 +71,13 @@ hl.exec_cmd("hyprctl keyword gestures:gesture '3, vertical, workspace'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, left, dispatcher, movefocus, r'")
 hl.exec_cmd("hyprctl keyword gestures:gesture '3, right, dispatcher, movefocus, l'")
 
+hl.curve("rubber", { type = "spring", mass = 1, stiffness = 190, dampening = 20 })
 hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "default", style = "popin" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 6, bezier = "default", style = "popin" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 1, spring = "rubber", style = "slidevert" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, spring = "rubber", style = "gnomed" })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
 hl.animation({ leaf = "border", enabled = false })
-hl.curve("rubber", { type = "spring", mass = 1, stiffness = 190, dampening = 20 })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
 hl.gesture({
@@ -112,5 +112,5 @@ require("dms/layout")
 require("dms/cursor")
 require("dms/binds")
 require("dms/windowrules")
-require("scrolloverview")
+--require("scrolloverview")
 --require("hyprgrass")
