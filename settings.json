@@ -31,7 +31,7 @@
   "mangoTrackpadNaturalScrolling": true,
   "firstDayOfWeek": 1,
   "showWeekNumber": false,
-  "calendarBackend": "auto",
+  "calendarBackend": "khal",
   "clockFormat": "24h",
   "showSeconds": true,
   "padHours12Hour": false,
@@ -46,7 +46,7 @@
   "modalAnimationSpeed": 2,
   "modalCustomAnimationDuration": 150,
   "enableRippleEffects": true,
-  "animationVariant": 0,
+  "animationVariant": 1,
   "motionEffect": 0,
   "m3ElevationEnabled": false,
   "m3ElevationIntensity": 12,
@@ -143,12 +143,7 @@
     {
       "id": "doNotDisturb",
       "enabled": true,
-      "width": 25
-    },
-    {
-      "id": "plugin_dankKDEConnect",
-      "enabled": true,
-      "width": 25
+      "width": 50
     },
     {
       "id": "colorPicker",
@@ -230,7 +225,7 @@
   "runningAppsCurrentMonitor": false,
   "appIdSubstitutions": [],
   "centeringMode": "geometric",
-  "clockDateFormat": "ddd d MMM yyyy",
+  "clockDateFormat": "ddd MMM d",
   "lockDateFormat": "",
   "greeterRememberLastSession": true,
   "greeterRememberLastUser": true,
@@ -278,7 +273,7 @@
   "launcherStyle": "full",
   "spotlightBarShowModeChips": false,
   "keybindsFloatingWindow": false,
-  "useAutoLocation": false,
+  "useAutoLocation": true,
   "weatherEnabled": true,
   "dashTabs": [
     {
@@ -295,20 +290,20 @@
     },
     {
       "id": "wallpaper",
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "settings",
       "enabled": false
     }
   ],
-  "networkPreference": "ethernet",
+  "networkPreference": "wifi",
   "iconThemeDark": "System Default",
   "iconThemeLight": "System Default",
   "iconThemePerMode": false,
   "lastAppliedIconTheme": "",
   "cursorSettings": {
-    "theme": "System Default",
+    "theme": "Adwaita",
     "size": 24,
     "niri": {
       "hideWhenTyping": false,
@@ -323,15 +318,15 @@
       "cursorHideTimeout": 0
     }
   },
-  "launcherLogoMode": "apps",
+  "launcherLogoMode": "os",
   "launcherLogoCustomPath": "",
-  "launcherLogoColorOverride": "",
+  "launcherLogoColorOverride": "primary",
   "launcherLogoColorInvertOnMode": false,
   "launcherLogoBrightness": 0.5,
   "launcherLogoContrast": 1,
   "launcherLogoSizeOffset": 0,
-  "fontFamily": "Google Sans",
-  "monoFontFamily": "Adwaita Mono",
+  "fontFamily": "Inter Variable",
+  "monoFontFamily": "JetBrains Mono",
   "fontWeight": 400,
   "fontScale": 1,
   "textRenderType": 1,
@@ -356,9 +351,9 @@
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
   "muteSoundsWhenMediaPlaying": true,
-  "acMonitorTimeout": 0,
+  "acMonitorTimeout": 300,
   "acLockTimeout": 0,
-  "acSuspendTimeout": 0,
+  "acSuspendTimeout": 1800,
   "acSuspendBehavior": 0,
   "acProfileName": "1",
   "acPostLockMonitorTimeout": 0,
@@ -385,11 +380,6 @@
   "fadeToDpmsEnabled": true,
   "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
-  "brightnessDevicePins": {},
-  "wifiNetworkPins": {},
-  "bluetoothDevicePins": {},
-  "audioInputDevicePins": {},
-  "audioOutputDevicePins": {},
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
@@ -419,7 +409,7 @@
   "matugenTemplateWezterm": false,
   "matugenTemplateDgop": true,
   "matugenTemplateKcolorscheme": true,
-  "matugenTemplateVscode": false,
+  "matugenTemplateVscode": true,
   "matugenTemplateEmacs": false,
   "matugenTemplateZed": false,
   "matugenTemplateNeovimSettings": {
@@ -818,5 +808,5 @@
   "barInsetPaddingShared": -1,
   "barInsetPaddingSyncAll": false,
   "frameBarInsetPadding": 5,
-  "configVersion": 12
+  "configVersion": 13
 }
