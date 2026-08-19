@@ -6,6 +6,8 @@
     ./dms.nix
     ./git.nix
     ./kitty.nix
+    ./flatpak.nix
+    ./fish.nix
   ];
 
   home.username = "aktire";
@@ -17,11 +19,6 @@
     settings = {
       shell = "fish";
     };
-  };
-
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = "";
   };
 
   # GTK Configuration
@@ -53,6 +50,7 @@
   };
 
   home.packages = with pkgs; [
+    home-manager
     kitty
     fetch
     wvkbd
@@ -63,6 +61,11 @@
     vscodium
     mpv
     loupe
+    grim
+    slurp
+    swappy
+    wl-clipboard
+    hyprshot
     papers
     baobab
     xournalpp
@@ -79,6 +82,7 @@
     steam
     mullvad
     qbittorrent
+    onlyoffice-desktopeditors
   ];
 
   programs.home-manager.enable = true;

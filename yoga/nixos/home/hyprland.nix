@@ -6,7 +6,7 @@
     systemd.enable = false;
 
     plugins = [
-      inputs.hyprcapture.packages.${pkgs.system}.default
+      inputs.hyprcapture.packages.${pkgs.stdenv.hostPlatform.system}.hyprcapture
       #inputs.hyprgrass.packages.${pkgs.system}.default
       #inputs.scrolloverview.packages.${pkgs.system}.default
     ];
@@ -18,6 +18,11 @@
         hl.exec_cmd("wayland-pipewire-idle-inhibit -w")
         hl.exec_cmd("wvkbd-deskintl --hidden -L 360")
       end)
+	
+	hl.env("HYPRCURSOR_THEME", "Adwaita")
+	hl.env("XCURSOR_THEME", "Adwaita")
+	hl.env("HYPRCURSOR_SIZE", "24")
+	hl.env("XCURSOR_SIZE", "24")
 
       hl.config({
         input = {
@@ -35,6 +40,7 @@
           layout = "scrolling",
           border_size = 5,
 	  gaps_out = 5,
+	  gaps_in = 4,
           resize_on_border = false,
         },
         decoration = {
@@ -131,15 +137,17 @@
       hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, no_anim = true })
 
       require("dms/colors")
+      ---require("scrolloverview")
+      ---require("hyprgrass")
 
       --- Keybinds
       hl.bind("CTRL + Print", hl.dsp.exec_cmd('hyprshot -m output -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
-      hl.bind("SUPER + CTRL + Space", hl.dsp.exec_cmd("quickshell -c QuickSnip -n"))
-      hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus Documents/"))
       hl.bind("SUPER + Print", hl.dsp.exec_cmd('hyprshot -m window -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
+      hl.bind("Print", hl.dsp.exec_cmd('grim -g \"$(slurp)\" - | swappy -f | wl-copy '))
+      hl.bind("SUPER + CTRL + Space", hl.dsp.exec_cmd("quickshell -c QuickSnip -n"))
+      hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
       hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
       hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
-      hl.bind("Print", hl.dsp.exec_cmd("flameshot gui"))
 
       hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
       hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })

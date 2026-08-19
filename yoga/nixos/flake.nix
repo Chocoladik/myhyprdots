@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/";
+
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,19 +41,22 @@
     }; 
   };
 
-  outputs = { self, nixpkgs, home-manager, dms, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, dms, ... }@inputs: {
     nixosConfigurations = {
       YOGA = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          dms.nixosModules.dank-material-shell
+	  dms.nixosModules.dank-material-shell
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.aktire = import ./home/home.nix;
+	    home-manager.sharedModules = [
+	  nix-flatpak.homeManagerModules.nix-flatpak
+	    ];
           }
           ./configuration.nix
         ];

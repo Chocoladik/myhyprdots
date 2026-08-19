@@ -30,6 +30,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.keyboard.qmk.enable = true;
+  services.udev.packages = [ pkgs.via ];
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", TAG+="uaccess"
+  '';
+
   nixpkgs.overlays = [
     (final: prev: {
       zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;

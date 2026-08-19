@@ -1,11 +1,12 @@
 {pkgs, ...}: {
-programs.git = {
-  enable = true;
-  settings.user = {
-    name  = "aktire";
-    email = "dognalamenya@gmail.com";
+
+  programs.gh.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "aktire";
+    userEmail = "dognalamenya@gmail.com";
   };
-};
 }
 
 

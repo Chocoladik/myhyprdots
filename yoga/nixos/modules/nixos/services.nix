@@ -15,14 +15,17 @@
     pulse.enable = true;
   };
 
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "where-is-my-sddm-theme";
+  };
+  
   programs.fuse.userAllowOther = true;
-
-  # Strictly essential system administration & recovery tools
   environment.systemPackages = with pkgs; [
     git
     gh
     neovim
-    tuigreet
     xdg-user-dirs
     pulseaudio
     wayland-pipewire-idle-inhibit
@@ -30,5 +33,6 @@
     gsettings-desktop-schemas
     pciutils
     usbutils
+    where-is-my-sddm-theme
   ];
 }
