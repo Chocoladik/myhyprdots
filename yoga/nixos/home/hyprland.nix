@@ -6,7 +6,6 @@
     systemd.enable = false;
 
     plugins = [
-      inputs.hyprcapture.packages.${pkgs.stdenv.hostPlatform.system}.hyprcapture
       #inputs.hyprgrass.packages.${pkgs.system}.default
       #inputs.scrolloverview.packages.${pkgs.system}.default
     ];
@@ -141,10 +140,10 @@
       ---require("hyprgrass")
 
       --- Keybinds
+      hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("fish -c cts"))
       hl.bind("CTRL + Print", hl.dsp.exec_cmd('hyprshot -m output -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
       hl.bind("SUPER + Print", hl.dsp.exec_cmd('hyprshot -m window -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
       hl.bind("Print", hl.dsp.exec_cmd('grim -g \"$(slurp)\" - | swappy -f | wl-copy '))
-      hl.bind("SUPER + CTRL + Space", hl.dsp.exec_cmd("quickshell -c QuickSnip -n"))
       hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
       hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
       hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))

@@ -7,8 +7,9 @@ programs.fish = {
       garbage = "sudo nix-collect-garbage -d";
     };
     interactiveShellInit = ''
+      fetch --rotate-y --infinite --shading-chars 161
       set -g fish_greeting ""
-      set -g fish_color_normal d0d0d0
+      set -g fish_color_normal f1f1f1
       set -g fish_color_command --bold ffffff
       set -g fish_color_keyword ffffff
       set -g fish_color_quote 9e9e9e
@@ -16,7 +17,7 @@ programs.fish = {
       set -g fish_color_end 616161
       set -g fish_color_error --underline 757575
       set -g fish_color_param b0b0b0
-      set -g fish_color_comment 505050
+      set -g fish_color_comment 959595
       set -g fish_color_selection --background=303030
       set -g fish_color_search_match --background=303030
       set -g fish_color_operator 9e9e9e
@@ -35,19 +36,30 @@ programs.fish = {
       fish_prompt = ''
         set -l last_status $status
         
-        # Directory path (Nord Frost Blue)
+        # Directory path
         set_color 8a8a8a
         echo -n (prompt_pwd)
         
-        # Status indicator color (Nord Aurora Green / Red)
+        # Status indicator color
         if test $last_status -eq 0
             set_color --bold ffffff
         else
-            set_color 505050
+            set_color 959595
         end
         
         echo -n " › "
         set_color normal
+      '';
+        cts = ''
+      set -l raw_text (grim -g (slurp) - | tesseract - stdout -l eng+deu+spa+rus --psm 6 2>/dev/null)
+      set -l clean_text (string match -r '\S.*' $raw_text | string join " " | string trim)
+
+      if test -z "$clean_text"
+          return 0
+      end
+
+      set -l encoded_query (echo -n "$clean_text" | jq -sRr @uri)
+      xdg-open "https://translate.google.com/?sl=auto&tl=ru&text=$encoded_query&op=translate" 
       '';
       
       fish_right_prompt = "";

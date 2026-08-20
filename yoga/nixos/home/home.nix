@@ -66,6 +66,8 @@
     swappy
     wl-clipboard
     hyprshot
+    jq
+    tesseract
     papers
     baobab
     xournalpp
@@ -83,6 +85,7 @@
     mullvad
     qbittorrent
     onlyoffice-desktopeditors
+
   ];
 
   programs.home-manager.enable = true;

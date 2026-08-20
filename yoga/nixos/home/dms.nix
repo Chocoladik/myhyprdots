@@ -201,7 +201,7 @@
   "workspaceUnfocusedMonitorBorderThickness": 2,
   "workspaceNameIcons": {},
   "waveProgressEnabled": true,
-  "scrollTitleEnabled": true,
+  "scrollTitleEnabled": false,
   "mediaAdaptiveWidthEnabled": true,
   "audioVisualizerEnabled": true,
   "mediaUseAlbumArtAccent": false,
@@ -500,7 +500,7 @@
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
   "notificationCompactMode": true,
-  "notificationShowTimeoutBar": false,
+  "notificationShowTimeoutBar": true,
   "notificationDedupeEnabled": true,
   "notificationPopupPosition": -1,
   "notificationAnimationSpeed": 2,
@@ -511,7 +511,16 @@
   "notificationHistorySaveLow": false,
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
-  "notificationRules": [],
+  "notificationRules": [
+    {
+      "enabled": true,
+      "field": "appName",
+      "pattern": "zen",
+      "matchType": "contains",
+      "action": "default",
+      "urgency": "normal"
+    }
+  ],
   "notificationFocusedMonitor": true,
   "osdAlwaysShowValue": false,
   "osdPosition": 5,
@@ -528,12 +537,11 @@
   "powerActionHoldDuration": 0.5,
   "powerMenuActions": [
     "reboot",
-    "logout",
     "poweroff",
     "suspend"
   ],
   "powerMenuDefaultAction": "poweroff",
-  "powerMenuGridLayout": true,
+  "powerMenuGridLayout": false,
   "customPowerActionLock": "",
   "customPowerActionLogout": "",
   "customPowerActionSuspend": "",
@@ -615,12 +623,14 @@
       "innerPadding": 5,
       "leftWidgets": [
         {
+          "id": "clock",
           "enabled": true,
-          "id": "clock"
+          "clockCompactMode": false
         },
         {
+          "id": "music",
           "enabled": true,
-          "id": "music"
+          "mediaSize": 1
         },
         {
           "enabled": true,
@@ -648,10 +658,6 @@
           "enabled": true,
           "id": "systemTray",
           "trayUseInlineExpansion": true
-        },
-        {
-          "enabled": true,
-          "id": "dankPomodoroTimer"
         },
         {
           "enabled": true,
@@ -788,14 +794,14 @@
       "trigger": "?"
     }
   },
-  "clipboardClickToPaste": false,
-  "clipboardEnterToPaste": false,
+  "clipboardClickToPaste": true,
+  "clipboardEnterToPaste": true,
   "clipboardRememberTypeFilter": false,
   "clipboardTypeFilter": "all",
   "clipboardVisibleEntryActions": [
-    "pin",
     "edit",
-    "delete"
+    "delete",
+    "copy"
   ],
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],

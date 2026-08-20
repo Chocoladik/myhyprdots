@@ -15,12 +15,21 @@
     pulse.enable = true;
   };
 
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
-    theme = "where-is-my-sddm-theme";
+    settings = {
+      initial_session = {
+        command = "${pkgs.uwsm}/bin/uwsm start -- ${pkgs.hyprland}/bin/start-hyprland";
+        user = "aktire";
+      };
+
+      default_session = {
+        command = "${pkgs.uwsm}/bin/uwsm start -- ${pkgs.hyprland}/bin/start-hyprland";
+        user = "aktire";
+      };
+    };
   };
-  
+
   programs.fuse.userAllowOther = true;
   environment.systemPackages = with pkgs; [
     git
@@ -33,6 +42,5 @@
     gsettings-desktop-schemas
     pciutils
     usbutils
-    where-is-my-sddm-theme
   ];
 }
