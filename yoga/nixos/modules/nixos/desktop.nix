@@ -10,11 +10,7 @@
   };
 
 
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  qt.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -22,6 +18,7 @@
     config = {
       hyprland.default = [ "hyprland" "gtk" ];
       common.default = [ "hyprland" "gtk" ];
+      common."org.freedesktop.impl.portal.Settings" = [ "gtk" ];
     };
   };
 
@@ -33,6 +30,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     GTK_CSD = "0";
     QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
     XDG_SCREENSHOT_BACKEND = "hyprland";
   };
 

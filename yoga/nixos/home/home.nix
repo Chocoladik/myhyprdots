@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -68,6 +68,7 @@
     hyprshot
     jq
     tesseract
+    curl
     papers
     baobab
     xournalpp
@@ -75,17 +76,17 @@
     gnome-text-editor
     adw-gtk3
     adwaita-icon-theme
+    qt6Packages.qt6ct
     vesktop
     chromium
-    materialgram
     zen-browser
+    materialgram
     spotifyd
     spicetify-cli
     steam
     mullvad
     qbittorrent
     onlyoffice-desktopeditors
-
   ];
 
   programs.home-manager.enable = true;

@@ -1,12 +1,25 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [inputs.dms.homeModules.dank-material-shell];
+  imports = [
+  inputs.dms.homeModules.dank-material-shell
+  inputs.dms-plugin-registry.nixosModules.default
+];
  programs.dank-material-shell = {
-   enable = true;
-};
+  enable = true;
+  dgop.package = inputs.dgop.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  plugins = {
+    quickCapture.enable = true;
+    dankKDEConnect.enable = true;
+    calculator.enable = true;
+    emojiLauncher.enable = true;
+    discordVoice.enable = true;
+    dankPomodoroTimer.enable = true;
+    hiddenBar.enable = true;
+  };
+};  
    xdg.configFile."DankMaterialShell/settings.json".text = '' 
-{
+   {
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "customThemeFile": "",
@@ -150,12 +163,12 @@
     },
     {
       "enabled": true,
-      "id": "doNotDisturb",
+      "id": "colorPicker",
       "width": 50
     },
     {
       "enabled": true,
-      "id": "colorPicker",
+      "id": "doNotDisturb",
       "width": 50
     }
   ],
@@ -404,7 +417,7 @@
   "matugenTemplateHyprland": true,
   "matugenTemplateMangowc": false,
   "matugenTemplateQt5ct": false,
-  "matugenTemplateQt6ct": false,
+  "matugenTemplateQt6ct": true,
   "matugenTemplateFirefox": false,
   "matugenTemplatePywalfox": false,
   "matugenTemplateZenBrowser": true,
@@ -499,8 +512,8 @@
   "notificationTimeoutLow": 3000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
-  "notificationCompactMode": true,
-  "notificationShowTimeoutBar": true,
+  "notificationCompactMode": false,
+  "notificationShowTimeoutBar": false,
   "notificationDedupeEnabled": true,
   "notificationPopupPosition": -1,
   "notificationAnimationSpeed": 2,
@@ -617,7 +630,7 @@
       "gothCornerRadiusValue": 15,
       "gothCornersEnabled": false,
       "hoverPopoutDelay": 250,
-      "hoverPopouts": true,
+      "hoverPopouts": false,
       "iconScale": 0.9,
       "id": "default",
       "innerPadding": 5,
@@ -649,19 +662,36 @@
       "removeWidgetPadding": false,
       "rightWidgets": [
         {
+          "id": "systemTray",
           "enabled": true,
-          "id": "keyboard_layout_name",
-          "keyboardLayoutNameCompactMode": false,
-          "keyboardLayoutNameShowIcon": false
+          "trayUseInlineExpansion": true,
+          "trayMaxVisibleItems": 0
         },
         {
-          "enabled": true,
-          "id": "systemTray",
-          "trayUseInlineExpansion": true
+          "id": "discordVoice",
+          "enabled": true
+        },
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        },
+        {
+          "id": "quickCapture",
+          "enabled": true
         },
         {
           "enabled": true,
           "id": "clipboard"
+        },
+        {
+          "id": "hiddenBar",
+          "enabled": true
+        },
+        {
+          "enabled": true,
+          "id": "keyboard_layout_name",
+          "keyboardLayoutNameCompactMode": false,
+          "keyboardLayoutNameShowIcon": false
         },
         {
           "enabled": true,

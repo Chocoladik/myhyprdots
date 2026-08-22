@@ -15,7 +15,7 @@
       hl.on("hyprland.start", function()
         hl.exec_cmd("rfkill unblock bluetooth")
         hl.exec_cmd("wayland-pipewire-idle-inhibit -w")
-        hl.exec_cmd("wvkbd-deskintl --hidden -L 360")
+        ---hl.exec_cmd("wvkbd-deskintl --hidden -L 360")
       end)
 	
 	hl.env("HYPRCURSOR_THEME", "Adwaita")
@@ -76,9 +76,10 @@
           focus_fit_method = 1,
           wrap_focus = false,
           wrap_swapcol = false,
+	  follow_min_visible = 0.1,
         },
         cursor = {
-          hide_on_key_press = false,
+          hide_on_key_press = true,
           hide_on_touch = true,
           inactive_timeout = 3,
     },
@@ -128,6 +129,7 @@
       hl.window_rule({ match = { class = "^(org\\.quickshell)$" }, float = true })
       hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
       hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
+      hl.layer_rule({ match = { namespace = "^dms:bar$" }, xray = true, })
       hl.window_rule({ match = { fullscreen = 1 }, idle_inhibit = "none" })
       hl.window_rule({ match = { class = "steam" }, float = true })
       hl.window_rule({ match = { class = "flameshot" }, no_anim = true, float = true })
@@ -140,10 +142,11 @@
       ---require("hyprgrass")
 
       --- Keybinds
-      hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("fish -c cts"))
+      hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("fish -c stt"))
+      hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("fish -c sts"))
       hl.bind("CTRL + Print", hl.dsp.exec_cmd('hyprshot -m output -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
       hl.bind("SUPER + Print", hl.dsp.exec_cmd('hyprshot -m window -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
-      hl.bind("Print", hl.dsp.exec_cmd('grim -g \"$(slurp)\" - | swappy -f | wl-copy '))
+      hl.bind("Print", hl.dsp.exec_cmd(' grim -g "$(slurp)" - | swappy -f - '))
       hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
       hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
       hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))

@@ -11,23 +11,23 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/";
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+    dgop = {
+      url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-     hyprcapture = {
-      url = "github:gfhdhytghd/HyprCapture";
-      inputs.hyprland.follows = "hyprland";
     };
 
     scrolloverview = {
@@ -39,6 +39,10 @@
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     }; 
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-flatpak, dms, ... }@inputs: {
@@ -47,6 +51,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          ./configuration.nix
+	  ./hardware-configuration.nix
 	  dms.nixosModules.dank-material-shell
           home-manager.nixosModules.home-manager
           {
@@ -58,7 +64,6 @@
 	  nix-flatpak.homeManagerModules.nix-flatpak
 	    ];
           }
-          ./configuration.nix
         ];
       };
     };

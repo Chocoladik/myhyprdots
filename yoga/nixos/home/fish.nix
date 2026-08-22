@@ -50,7 +50,7 @@ programs.fish = {
         echo -n " › "
         set_color normal
       '';
-        cts = ''
+        stt = ''
       set -l raw_text (grim -g (slurp) - | tesseract - stdout -l eng+deu+spa+rus --psm 6 2>/dev/null)
       set -l clean_text (string match -r '\S.*' $raw_text | string join " " | string trim)
 
@@ -61,7 +61,21 @@ programs.fish = {
       set -l encoded_query (echo -n "$clean_text" | jq -sRr @uri)
       xdg-open "https://translate.google.com/?sl=auto&tl=ru&text=$encoded_query&op=translate" 
       '';
-      
+       sts = '' 
+      set -l tmp_img (mktemp /tmp/crop_search_XXXXXX.png)
+      grim -g (slurp) $tmp_img 2>/dev/null
+
+      if not test -s $tmp_img
+          rm -f $tmp_img
+          return 0
+      end
+      set -l search_url (curl -s -i -F "encoded_image=@$tmp_img" "https://lens.google.com/uploadbyurl" | string match -r -i '^location:\s*(.*)' | string replace -r "(?i)^location:\s*" "" | string trim)
+      rm -f $tmp_img
+
+      if test -n "$search_url"
+          xdg-open "$search_url"
+      end
+      '';
       fish_right_prompt = "";
     };
   };

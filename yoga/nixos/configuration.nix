@@ -16,8 +16,8 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
-    trusted-users = ["root" "@wheel"];
-
+    trusted-users = ["root" "@wheel" "aktire"];
+    accept-flake-config = true;
     substituters = [
       "https://cache.nixos.org"
       "https://hyprland.cachix.org"
@@ -38,9 +38,17 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
+     zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
     })
   ]; 
+
+  programs.dsearch = {
+  enable = true;
+  systemd = {
+    enable = true;
+    target = "graphical-session.target";
+    };
+  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
