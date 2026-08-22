@@ -57,16 +57,12 @@
     android-tools
     poppler-utils
     ghostscript
-    btop
     vscodium
     mpv
     loupe
-    grim
-    slurp
-    swappy
-    wl-clipboard
-    hyprshot
-    jq
+    img2pdf
+    zbar
+    imagemagick
     tesseract
     curl
     papers

@@ -142,11 +142,9 @@
       ---require("hyprgrass")
 
       --- Keybinds
-      hl.bind("SUPER + CTRL + T", hl.dsp.exec_cmd("fish -c stt"))
-      hl.bind("SUPER + CTRL + S", hl.dsp.exec_cmd("fish -c sts"))
-      hl.bind("CTRL + Print", hl.dsp.exec_cmd('hyprshot -m output -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
-      hl.bind("SUPER + Print", hl.dsp.exec_cmd('hyprshot -m window -m active -f "Screenshot_$(date +%Y%m%d_%H%M%S).png" -o "/home/aktire/Pictures/Screenshots" -z'))
-      hl.bind("Print", hl.dsp.exec_cmd(' grim -g "$(slurp)" - | swappy -f - '))
+      hl.bind("CTRL + Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot full edit"))
+      hl.bind("SUPER + Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot window edit"))
+      hl.bind("Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot region edit"))
       hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
       hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
       hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
