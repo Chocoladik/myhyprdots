@@ -27,7 +27,6 @@
       "hyprland.cachix.org-1:a7PGxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
-
   nixpkgs.config.allowUnfree = true;
 
   hardware.keyboard.qmk.enable = true;

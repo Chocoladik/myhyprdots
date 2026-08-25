@@ -115,14 +115,14 @@
         fingers = 3,
         direction = "left",
         action = function()
-          hl.dispatch(hl.dsp.focus({ direction = "r" }))
+          hl.dispatch(hl.dsp.layout( "focus right" ))
         end,
       })
       hl.gesture({
         fingers = 3,
         direction = "right",
         action = function()
-          hl.dispatch(hl.dsp.focus({ direction = "l" }))
+          hl.dispatch(hl.dsp.layout( "focus left" ))
         end,
       })
 
@@ -184,10 +184,10 @@
       end)
 
       hl.bind("SUPER + CTRL + Q", hl.dsp.window.close())
-      hl.bind("SUPER + Left", hl.dsp.focus({ direction = "l" }))
-      hl.bind("SUPER + Right", hl.dsp.focus({ direction = "r" }))
-      hl.bind("SUPER + Down", hl.dsp.focus({ direction = "d" }))
-      hl.bind("SUPER + Up", hl.dsp.focus({ direction = "u" }))
+      hl.bind("SUPER + Left", hl.dsp.layout( "focus left" ))
+      hl.bind("SUPER + Right", hl.dsp.layout( "focus right" ))
+      hl.bind("SUPER + Down", hl.dsp.layout( "focus down" ))
+      hl.bind("SUPER + Up", hl.dsp.layout( "focus up" ))
       hl.bind("SUPER + F", hl.dsp.layout("fit active"))
       hl.bind("SUPER + U", hl.dsp.layout("consume_or_expel prev"))
       hl.bind("SUPER + I", hl.dsp.layout("consume_or_expel next"))
@@ -196,7 +196,7 @@
       hl.bind("SUPER + SHIFT + Down", hl.dsp.window.move({ direction = "d" }))
       hl.bind("SUPER + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
       hl.bind("SUPER + R", hl.dsp.layout("colresize +conf"))
-      hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+      hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle", layout_aware = true }))
       
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
       hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })

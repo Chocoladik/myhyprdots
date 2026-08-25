@@ -19,7 +19,7 @@
   };
 };  
    xdg.configFile."DankMaterialShell/settings.json".text = '' 
-   {
+{
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "customThemeFile": "",
@@ -67,8 +67,8 @@
   "modalAnimationSpeed": 2,
   "modalCustomAnimationDuration": 150,
   "enableRippleEffects": true,
-  "animationVariant": 1,
-  "motionEffect": 0,
+  "animationVariant": 0,
+  "motionEffect": 2,
   "m3ElevationEnabled": false,
   "m3ElevationIntensity": 12,
   "m3ElevationOpacity": 33,
@@ -367,11 +367,11 @@
   "notepadLastCustomTransparency": 0.7,
   "notepadUseCompositorGap": false,
   "notepadEdgeGap": 0,
-  "soundsEnabled": false,
+  "soundsEnabled": true,
   "useSystemSoundTheme": false,
-  "soundLogin": false,
+  "soundLogin": true,
   "soundNewNotification": true,
-  "soundVolumeChanged": true,
+  "soundVolumeChanged": false,
   "soundPluggedIn": true,
   "muteSoundsWhenMediaPlaying": true,
   "acMonitorTimeout": 300,
@@ -393,9 +393,9 @@
   "batteryLowThreshold": 20,
   "batteryNotifyLow": true,
   "batteryChargeLimitNotificationType": 0,
-  "batteryLowNotificationType": 0,
-  "batteryCriticalNotificationType": 0,
-  "batteryAutoPowerSaver": true,
+  "batteryLowNotificationType": 1,
+  "batteryCriticalNotificationType": 1,
+  "batteryAutoPowerSaver": false,
   "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": false,
@@ -577,10 +577,14 @@
     ],
     "wallpaper": [
       "all"
+    ],
+    "toast": [
+      "all"
     ]
   },
   "showOnLastDisplay": {
-    "dock": true
+    "dock": true,
+    "toast": false
   },
   "niriOutputSettings": {},
   "hyprlandOutputSettings": {
@@ -742,7 +746,8 @@
       "widgetOutlineOpacity": 1,
       "widgetOutlineThickness": 1,
       "widgetPadding": 8,
-      "widgetTransparency": 1
+      "widgetTransparency": 1,
+      "useOverlayLayer": false
     }
   ],
   "desktopClockEnabled": false,

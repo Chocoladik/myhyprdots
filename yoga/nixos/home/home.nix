@@ -8,6 +8,8 @@
     ./kitty.nix
     ./flatpak.nix
     ./fish.nix
+    ./xournalpp.nix
+    ./matugen.nix
   ];
 
   home.username = "aktire";
@@ -79,7 +81,6 @@
     materialgram
     spotifyd
     spicetify-cli
-    steam
     mullvad
     qbittorrent
     onlyoffice-desktopeditors
