@@ -4,11 +4,13 @@
   services.upower.enable = true;
   services.thermald.enable = true;
   services.libinput.enable = true;
+  services.ratbagd.enable = true;
   services.gvfs.enable = true;
   services.devmon.enable = true;
   services.flatpak.enable = true;
   services.mullvad-vpn.enable = true;
-  services.spotifyd.enable = true;
+  services.spotifyd.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   services.pipewire = {
     enable = true;
@@ -18,16 +20,14 @@
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
-        command = "${pkgs.uwsm}/bin/uwsm start -- ${pkgs.hyprland}/bin/start-hyprland";
-        user = "aktire";
-      };
-
-      default_session = {
-        command = "${pkgs.uwsm}/bin/uwsm start -- ${pkgs.hyprland}/bin/start-hyprland";
-        user = "aktire";
-      };
+      terminal.vt = 1;
     };
+  };
+
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "hyprland";
+    configHome = "/home/aktire";
   };
 
   programs.fuse.userAllowOther = true;
