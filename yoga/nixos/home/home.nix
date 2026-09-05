@@ -56,6 +56,7 @@
     kitty
     fetch
     wvkbd
+    piper
     android-tools
     poppler-utils
     ghostscript
@@ -65,6 +66,9 @@
     img2pdf
     zbar
     imagemagick
+    krita
+    darktable
+    ausweisapp
     tesseract
     curl
     papers

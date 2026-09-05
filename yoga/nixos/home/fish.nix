@@ -3,7 +3,7 @@
 programs.fish = {
     enable = true;
     shellAliases = {
-      yay = "cd /etc/nixos && sudo git add -A && sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#YOGA";
+      yay = "cd /etc/nixos && sudo git add -A && sudo nix flake update && sudo nixos-rebuild switch --upgrade --flake /etc/nixos#YOGA";
       garbage = "sudo nix-collect-garbage -d";
     };
     interactiveShellInit = ''
