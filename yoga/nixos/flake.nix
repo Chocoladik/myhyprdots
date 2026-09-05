@@ -1,6 +1,4 @@
 {
-  description = "Hardened NixOS System and Home Manager Flake";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -51,21 +49,29 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
-	  ./hardware-configuration.nix
-	  dms.nixosModules.dank-material-shell
+          /etc/nixos/configuration.nix
+	        /etc/nixos/hardware-configuration.nix
+	        dms.nixosModules.dank-material-shell
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.aktire = import ./home/home.nix;
-	    home-manager.sharedModules = [
-	  nix-flatpak.homeManagerModules.nix-flatpak
-	    ];
+	          home-manager.sharedModules = [
+	            nix-flatpak.homeManagerModules.nix-flatpak
+	          ];
           }
         ];
       };
     };
+    homeConfigurations."aktire" = home-manager.lib.homeManagerConfiguration {
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    extraSpecialArgs = { inherit inputs; };
+    modules = [
+      ./home/home.nix
+      nix-flatpak.homeManagerModules.nix-flatpak
+    ];
+  };
   };
 }

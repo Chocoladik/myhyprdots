@@ -84,6 +84,7 @@
     mullvad
     qbittorrent
     onlyoffice-desktopeditors
+    fluent-icon-theme
   ];
 
   programs.home-manager.enable = true;
