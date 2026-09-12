@@ -18,7 +18,7 @@
     initrd.verbose = false;
     initrd.kernelModules = [ "i915" ];
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
 
     kernelParams = [
       "quiet"

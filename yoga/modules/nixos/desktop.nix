@@ -16,9 +16,9 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
     config = {
-      hyprland.default = [ "hyprland" "gtk" ];
-      common.default = [ "hyprland" "gtk" ];
-      common."org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+      hyprland.default = ["hyprland"];
+      common.default = ["gtk"];
+      gtk.default = ["gtk"];
     };
   };
 
@@ -32,18 +32,5 @@
     QT_QPA_PLATFORM = "wayland";
     QT_QPA_PLATFORMTHEME = "qt6ct";
     XDG_SCREENSHOT_BACKEND = "hyprland";
-  };
-
-  programs.dank-material-shell = {
-    enable = true;
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
-    };
-    enableSystemMonitoring = true;
-    enableDynamicTheming = true;
-    enableAudioWavelength = true;
-    enableCalendarEvents = true;
-    enableVPN = true;
   };
 }

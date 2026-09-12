@@ -16,7 +16,7 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
-    trusted-users = ["root" "@wheel" "aktire"];
+    trusted-users = ["root" "@wheel"];
     accept-flake-config = true;
     substituters = [
       "https://cache.nixos.org"
@@ -24,7 +24,7 @@
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "hyprland.cachix.org-1:a7PGxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
   nixpkgs.config.allowUnfree = true;
@@ -35,19 +35,18 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", TAG+="uaccess"
   '';
 
-  nixpkgs.overlays = [
-    (final: prev: {
-     zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
-    })
-  ]; 
-
   programs.dsearch = {
-  enable = true;
-  systemd = {
     enable = true;
-    target = "graphical-session.target";
+    systemd = {
+      enable = true;
+      target = "graphical-session.target";
     };
   };
+  
+  fonts.fontconfig.enable = true;
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   system.stateVersion = "26.05";
 }

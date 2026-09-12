@@ -2,30 +2,35 @@
 
 {
   imports = [
-  inputs.dms.homeModules.dank-material-shell
-  inputs.dms-plugin-registry.nixosModules.default
-  #inputs.dank-greeter.nixosModules.default
-];
- programs.dank-material-shell = {
-  enable = true;
-  plugins = {
-    quickCapture.enable = true;
-    dankKDEConnect.enable = true;
-    calculator.enable = true;
-    emojiLauncher.enable = true;
-    discordVoice.enable = true;
-    dankPomodoroTimer.enable = true;
-    hiddenBar.enable = true;
-  };
-};  
-   xdg.configFile."DankMaterialShell/settings.json".text = '' 
+    inputs.dms.homeModules.dank-material-shell
+    inputs.dms-plugin-registry.nixosModules.default
+  ];
+
+  programs.dank-material-shell = {
+    enable = true;
+    systemd.enable = true;
+    enableSystemMonitoring = true;
+    enableVPN = true;
+    enableDynamicTheming = true;
+    enableAudioWavelength = true;
+    enableCalendarEvents = true;
+    #dgop.package = inputs.dgop.packages.${pkgs.system}.default; 
+    plugins = {
+      quickCapture.enable = true;
+      dankKDEConnect.enable = true;
+      calculator.enable = true;
+      emojiLauncher.enable = true;
+      dankPomodoroTimer.enable = true;
+      hiddenBar.enable = true;
+    };
+  };  
+
+  xdg.configFile."DankMaterialShell/settings.json".text = '' 
 {
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "matugenScheme": "scheme-content",
   "cornerRadius": 13,
-  "hyprlandLayoutRadiusOverride": 8,
-  "hyprlandLayoutBorderSize": 5,
   "firstDayOfWeek": 1,
   "calendarBackend": "khal",
   "clockFormat": "24h",
@@ -41,7 +46,9 @@
   "m3ElevationOpacity": 33,
   "popoutElevationEnabled": false,
   "barElevationEnabled": false,
+  "blurEnabled": true,
   "blurBorderColor": "secondary",
+  "blurWallpaperOnOverview": true,
   "wallpaperBackgroundColorMode": "surface",
   "systemTrayIconTintMode": "monochrome",
   "controlCenterShowMicPercent": true,
@@ -124,22 +131,6 @@
   ],
   "networkPreference": "ethernet",
   "iconThemeDark": "Fluent-dark",
-  "cursorSettings": {
-    "dwl": {
-      "cursorHideTimeout": 0
-    },
-    "hyprland": {
-      "hideOnKeyPress": false,
-      "hideOnTouch": true,
-      "inactiveTimeout": 3
-    },
-    "niri": {
-      "hideAfterInactiveMs": 0,
-      "hideWhenTyping": false
-    },
-    "size": 24,
-    "theme": "Adwaita"
-  },
   "launcherLogoMode": "os",
   "launcherLogoColorOverride": "primary",
   "monoFontFamily": "JetBrains Mono",
@@ -158,7 +149,6 @@
   "lockBeforeSuspend": true,
   "fadeToLockEnabled": false,
   "terminalsAlwaysDark": true,
-  "matugenTemplateNiri": false,
   "matugenTemplateMangowc": false,
   "matugenTemplateQt5ct": false,
   "matugenTemplateFirefox": false,
@@ -261,7 +251,7 @@
       "gothCornersEnabled": false,
       "hoverPopoutDelay": 250,
       "hoverPopouts": true,
-      "iconScale": 0.9,
+      "iconScale": 1,
       "id": "default",
       "innerPadding": 5,
       "leftWidgets": [
@@ -298,7 +288,7 @@
           "trayMaxVisibleItems": 0
         },
         {
-          "id": "discordVoice",
+          "id": "quickCapture",
           "enabled": true
         },
         {
@@ -306,22 +296,21 @@
           "enabled": true
         },
         {
-          "id": "quickCapture",
-          "enabled": true
-        },
-        {
           "enabled": true,
           "id": "clipboard"
-        },
-        {
-          "id": "hiddenBar",
-          "enabled": true
         },
         {
           "enabled": true,
           "id": "keyboard_layout_name",
           "keyboardLayoutNameCompactMode": false,
           "keyboardLayoutNameShowIcon": false
+        },
+        {
+          "enabled": true,
+          "id": "battery",
+          "batteryStyle": "ring",
+          "showBatteryPercent": false,
+          "showBatteryPowerDischarging": true
         },
         {
           "enabled": true,
@@ -334,10 +323,6 @@
           "minimumWidth": false,
           "showInGb": true,
           "showSwap": false
-        },
-        {
-          "enabled": true,
-          "id": "battery"
         },
         {
           "enabled": true,
@@ -373,7 +358,8 @@
       "widgetOutlineThickness": 1,
       "widgetPadding": 8,
       "widgetTransparency": 1,
-      "useOverlayLayer": false
+      "useOverlayLayer": false,
+      "batteryColorMode": "level"
     }
   ],
   "desktopClockCustomColor": {
@@ -427,9 +413,10 @@
   "frameThickness": 2,
   "frameRounding": 16,
   "frameColor": "surface",
+  "frameBarSize": 50,
   "frameLauncherEmergeSide": "top",
   "frameBarInsetPadding": 5,
-  "configVersion": 17
-}
-'' ;
+  "configVersion": 18
+}  
+'';
 }

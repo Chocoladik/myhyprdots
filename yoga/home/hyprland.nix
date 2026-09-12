@@ -6,8 +6,8 @@
     systemd.enable = false;
 
     plugins = [
-      #inputs.hyprgrass.packages.${pkgs.system}.default
-      #inputs.scrolloverview.packages.${pkgs.system}.default
+      #inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.scrolloverview.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     # Hyprland configuration 
@@ -71,7 +71,7 @@
           no_donation_nag = true,
         },
         scrolling = {
-          column_width = 0.75,
+          column_width = 0.5,
           explicit_column_widths = " 0.25, 0.5, 0.75, 1.0 ",
           focus_fit_method = 1,
           wrap_focus = false,
@@ -196,6 +196,8 @@
       hl.bind("SUPER + SHIFT + Down", hl.dsp.window.move({ direction = "d" }))
       hl.bind("SUPER + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
       hl.bind("SUPER + R", hl.dsp.layout("colresize +conf"))
+      ---hl.bind("SUPER + CTRL + Up", hl.dsp.window.resize({+10}))
+      ---hl.bind("SUPER + CTRL + Down", hl.dsp.window.resize({-10}))
       hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle", layout_aware = true }))
       
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })

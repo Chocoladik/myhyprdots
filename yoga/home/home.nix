@@ -10,11 +10,12 @@
     ./fish.nix
     ./xournalpp.nix
     ./matugen.nix
+    inputs.areofyl-fetch.homeManagerModules.default
   ];
 
   home.username = "aktire";
   home.homeDirectory = "/home/aktire";
-  
+  programs.fetch.enable = true;
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -29,10 +30,6 @@
     theme = {
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
@@ -54,8 +51,7 @@
   home.packages = with pkgs; [
     home-manager
     kitty
-    fetch
-    wvkbd
+    #wvkbd
     piper
     android-tools
     poppler-utils
@@ -81,7 +77,6 @@
     qt6Packages.qt6ct
     vesktop
     chromium
-    zen-browser
     materialgram
     spotifyd
     spicetify-cli
