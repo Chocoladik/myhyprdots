@@ -51,6 +51,7 @@
   home.packages = with pkgs; [
     home-manager
     kitty
+    btop
     #wvkbd
     piper
     android-tools

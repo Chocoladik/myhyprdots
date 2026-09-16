@@ -2,9 +2,27 @@
 
 {
   services.upower.enable = true;
-  services.system76-scheduler.settings.cfsProfiles.enable = true;
   services.thermald.enable = true; 
-  services.power-profiles-daemon.enable = true; 
+  services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+	battery = {
+	  governor = "powersave";
+	  turbo = "never";
+	};
+	charger = {
+	  governor = "performance";
+	  turbo = "auto";
+	};
+    };
+  };
+  services.system76-scheduler.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = "powersave";
+  };
   services.libinput.enable = true;
   services.ratbagd.enable = true;
   services.gvfs.enable = true;
@@ -32,7 +50,8 @@
 
   programs.fuse.userAllowOther = true;
   environment.systemPackages = [
-    pkgs.ffmpeg
+    pkgs.ffmpeg-full
+    pkgs.libavif
     pkgs.git
     pkgs.gh
     pkgs.neovim
@@ -43,6 +62,14 @@
     pkgs.gsettings-desktop-schemas
     pkgs.pciutils
     pkgs.usbutils
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (pkgs.symlinkJoin {
+    name = "zen-browser";
+    paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zen \
+        --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
+    '';
+  })
   ];
 }

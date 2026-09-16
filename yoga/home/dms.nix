@@ -14,14 +14,12 @@
     enableDynamicTheming = true;
     enableAudioWavelength = true;
     enableCalendarEvents = true;
-    #dgop.package = inputs.dgop.packages.${pkgs.system}.default; 
     plugins = {
       quickCapture.enable = true;
       dankKDEConnect.enable = true;
       calculator.enable = true;
       emojiLauncher.enable = true;
       dankPomodoroTimer.enable = true;
-      hiddenBar.enable = true;
     };
   };  
 
@@ -36,12 +34,12 @@
   "clockFormat": "24h",
   "showSeconds": true,
   "windSpeedUnit": "ms",
-  "animationSpeed": 2,
   "customAnimationDuration": 200,
   "syncComponentAnimationSpeeds": false,
   "popoutAnimationSpeed": 2,
   "modalAnimationSpeed": 2,
-  "motionEffect": 2,
+  "animationVariant": 2,
+  "motionEffect": 1,
   "m3ElevationEnabled": false,
   "m3ElevationOpacity": 33,
   "popoutElevationEnabled": false,
@@ -107,6 +105,7 @@
   "dankLauncherV2ShowSourceBadges": false,
   "dankLauncherV2BorderEnabled": true,
   "dankLauncherV2BorderColor": "secondary",
+  "launcherUseOverlayLayer": true,
   "dashTabs": [
     {
       "id": "overview",
@@ -148,6 +147,7 @@
   "batteryLowNotificationType": 1,
   "lockBeforeSuspend": true,
   "fadeToLockEnabled": false,
+  "fadeToDpmsGracePeriod": 3,
   "terminalsAlwaysDark": true,
   "matugenTemplateMangowc": false,
   "matugenTemplateQt5ct": false,
@@ -170,7 +170,7 @@
   "lockScreenShowProfileImage": false,
   "lockScreenShowPasswordField": false,
   "lockScreenPowerOffMonitorsOnLock": true,
-  "lockScreenNotificationMode": 2,
+  "lockScreenFontFamily": "JetBrainsMono Nerd Font",
   "notificationTimeoutLow": 3000,
   "notificationPopupPosition": -1,
   "notificationAnimationSpeed": 2,
@@ -215,14 +215,6 @@
     "toast": false
   },
   "displayProfileAutoSelect": true,
-  "connectedFrameBarStyleBackups": {
-    "default": {
-      "borderEnabled": false,
-      "gothCornersEnabled": true,
-      "shadowIntensity": 0,
-      "squareCorners": true
-    }
-  },
   "barConfigs": [
     {
       "autoHide": false,
@@ -248,7 +240,7 @@
       "fontScale": 1,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 15,
-      "gothCornersEnabled": false,
+      "gothCornersEnabled": true,
       "hoverPopoutDelay": 250,
       "hoverPopouts": true,
       "iconScale": 1,
@@ -307,13 +299,6 @@
         },
         {
           "enabled": true,
-          "id": "battery",
-          "batteryStyle": "ring",
-          "showBatteryPercent": false,
-          "showBatteryPowerDischarging": true
-        },
-        {
-          "enabled": true,
           "id": "cpuUsage",
           "minimumWidth": false
         },
@@ -323,6 +308,13 @@
           "minimumWidth": false,
           "showInGb": true,
           "showSwap": false
+        },
+        {
+          "enabled": true,
+          "id": "battery",
+          "batteryStyle": "ring",
+          "showBatteryPercent": false,
+          "showBatteryPowerDischarging": true
         },
         {
           "enabled": true,
@@ -349,7 +341,7 @@
       "showOnLastDisplay": true,
       "showOnWindowsOpen": false,
       "spacing": 0,
-      "squareCorners": false,
+      "squareCorners": true,
       "transparency": 1,
       "visible": true,
       "widgetOutlineColor": "primary",
@@ -358,8 +350,8 @@
       "widgetOutlineThickness": 1,
       "widgetPadding": 8,
       "widgetTransparency": 1,
-      "useOverlayLayer": false,
-      "batteryColorMode": "level"
+      "useOverlayLayer": true,
+      "batteryColorMode": "theme"
     }
   ],
   "desktopClockCustomColor": {
@@ -404,12 +396,12 @@
   },
   "clipboardClickToPaste": true,
   "clipboardEnterToPaste": true,
+  "clipboardUseOverlayLayer": true,
   "clipboardVisibleEntryActions": [
     "edit",
     "delete",
     "copy"
   ],
-  "frameEnabled": true,
   "frameThickness": 2,
   "frameRounding": 16,
   "frameColor": "surface",
@@ -417,6 +409,6 @@
   "frameLauncherEmergeSide": "top",
   "frameBarInsetPadding": 5,
   "configVersion": 18
-}  
+}
 '';
 }

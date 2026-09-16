@@ -5,14 +5,21 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/";
  
   home-manager = {
-    url = "github:nix-community/home-manager";
+    url = "github:nix-community/home-manager/release-26.05";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-    
    hyprland = {
      url = "github:hyprwm/Hyprland";
-     inputs.nixpkgs.follows = "nixpkgs";
+   };
+
+   hyprgrass = {
+     url = "github:horriblename/hyprgrass";
+     inputs.hyprland.follows = "hyprland";
+   };
+   scrolloverview = {
+     url = "github:yayuuu/hyprland-scroll-overview";
+     inputs.hyprland.follows = "hyprland";
    };
 
    dms = {
@@ -33,7 +40,7 @@
 
  };
 
-  outputs = { self, nixpkgs, chaotic, nix-flatpak, home-manager, hyprland, dms, dms-plugin-registry, zen-browser, ... }@inputs: {
+  outputs = { self, nixpkgs, chaotic, nix-flatpak, home-manager, hyprland, hyprgrass, scrolloverview, dms, dms-plugin-registry, zen-browser, ... }@inputs: {
     nixosConfigurations = {
       YOGA = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -41,9 +48,9 @@
         modules = [
           ./configuration.nix
 	  ./hardware-configuration.nix
+          chaotic.nixosModules.default
 	  dms.nixosModules.dank-material-shell
           home-manager.nixosModules.home-manager
-	  chaotic.nixosModules.default
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

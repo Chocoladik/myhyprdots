@@ -3,14 +3,14 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     systemd.enable = false;
-
     plugins = [
-      #inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
       #inputs.scrolloverview.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
-    # Hyprland configuration 
     extraConfig = ''
       hl.on("hyprland.start", function()
         hl.exec_cmd("rfkill unblock bluetooth")
@@ -98,14 +98,10 @@
         kb_layout = "us, ru",
       })
 
-      hl.exec_cmd("hyprctl keyword gestures:gesture '3, vertical, workspace'")
-      hl.exec_cmd("hyprctl keyword gestures:gesture '3, left, dispatcher, movefocus, r'")
-      hl.exec_cmd("hyprctl keyword gestures:gesture '3, right, dispatcher, movefocus, l'")
-
       hl.curve("rubber", { type = "spring", mass = 1, stiffness = 190, dampening = 20 })
       hl.animation({ leaf = "windowsIn", enabled = true, speed = 4, bezier = "default", style = "popin" })
       hl.animation({ leaf = "windowsOut", enabled = true, speed = 6, bezier = "default", style = "popin" })
-      hl.animation({ leaf = "workspaces", enabled = true, speed = 1, spring = "rubber", style = "slidevert" })
+      hl.animation({ leaf = "workspaces", enabled = true, speed = 4, spring = "rubber", style = "slidevert" })
       hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, spring = "rubber", style = "gnomed" })
       hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
       hl.animation({ leaf = "border", enabled = false })
@@ -139,7 +135,7 @@
 
       require("dms/colors")
       ---require("scrolloverview")
-      ---require("hyprgrass")
+      require("hyprgrass")
 
       --- Keybinds
       hl.bind("CTRL + Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot full edit"))
