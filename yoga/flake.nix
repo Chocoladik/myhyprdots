@@ -18,7 +18,7 @@
      inputs.hyprland.follows = "hyprland";
    };
    scrolloverview = {
-     url = "github:yayuuu/hyprland-scroll-overview";
+     url = "github:yayuuu/hyprland-scroll-overview/new-release";
      inputs.hyprland.follows = "hyprland";
    };
 

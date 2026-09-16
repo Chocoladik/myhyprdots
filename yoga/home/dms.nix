@@ -24,7 +24,7 @@
   };  
 
   xdg.configFile."DankMaterialShell/settings.json".text = '' 
-{
+  {
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "matugenScheme": "scheme-content",
@@ -34,12 +34,12 @@
   "clockFormat": "24h",
   "showSeconds": true,
   "windSpeedUnit": "ms",
+  "animationSpeed": 2,
   "customAnimationDuration": 200,
   "syncComponentAnimationSpeeds": false,
   "popoutAnimationSpeed": 2,
   "modalAnimationSpeed": 2,
-  "animationVariant": 2,
-  "motionEffect": 1,
+  "motionEffect": 2,
   "m3ElevationEnabled": false,
   "m3ElevationOpacity": 33,
   "popoutElevationEnabled": false,
@@ -88,6 +88,7 @@
     }
   ],
   "workspaceFollowFocus": true,
+  "showOccupiedWorkspacesOnly": true,
   "scrollTitleEnabled": false,
   "audioWheelScrollAmount": 2,
   "focusedWindowShowIcon": false,
@@ -105,7 +106,6 @@
   "dankLauncherV2ShowSourceBadges": false,
   "dankLauncherV2BorderEnabled": true,
   "dankLauncherV2BorderColor": "secondary",
-  "launcherUseOverlayLayer": true,
   "dashTabs": [
     {
       "id": "overview",
@@ -138,10 +138,8 @@
   "soundVolumeChanged": false,
   "acMonitorTimeout": 300,
   "acSuspendTimeout": 1800,
-  "acProfileName": "1",
   "batteryMonitorTimeout": 120,
   "batterySuspendTimeout": 1200,
-  "batteryProfileName": "1",
   "batteryCriticalThreshold": 5,
   "batteryNotifyLow": true,
   "batteryLowNotificationType": 1,
@@ -165,10 +163,11 @@
   "notificationOverlayEnabled": true,
   "notificationPopupShadowEnabled": false,
   "notificationForegroundLayers": false,
-  "lockScreenShowTime": false,
+  "lockScreenClockStyle": "vertical",
   "lockScreenShowDate": false,
   "lockScreenShowProfileImage": false,
   "lockScreenShowPasswordField": false,
+  "lockScreenShowWeather": false,
   "lockScreenPowerOffMonitorsOnLock": true,
   "lockScreenFontFamily": "JetBrainsMono Nerd Font",
   "notificationTimeoutLow": 3000,
@@ -195,9 +194,11 @@
   "powerMenuActions": [
     "reboot",
     "poweroff",
-    "suspend"
+    "suspend",
+    "restart"
   ],
   "powerMenuDefaultAction": "poweroff",
+  "powerMenuGridLayout": true,
   "updaterIntervalSeconds": 86400,
   "screenPreferences": {
     "dock": [
@@ -208,6 +209,12 @@
     ],
     "toast": [
       "all"
+    ],
+    "lockScreen": [
+      {
+        "name": "eDP-1",
+        "model": "0x303D"
+      }
     ]
   },
   "showOnLastDisplay": {
@@ -215,6 +222,15 @@
     "toast": false
   },
   "displayProfileAutoSelect": true,
+  "connectedFrameBarStyleBackups": {
+    "default": {
+      "shadowIntensity": 0,
+      "squareCorners": true,
+      "attachToScreenEdge": false,
+      "gothCornersEnabled": true,
+      "borderEnabled": false
+    }
+  },
   "barConfigs": [
     {
       "autoHide": false,
@@ -240,8 +256,8 @@
       "fontScale": 1,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 15,
-      "gothCornersEnabled": true,
-      "hoverPopoutDelay": 250,
+      "gothCornersEnabled": false,
+      "hoverPopoutDelay": 121,
       "hoverPopouts": true,
       "iconScale": 1,
       "id": "default",
@@ -341,7 +357,7 @@
       "showOnLastDisplay": true,
       "showOnWindowsOpen": false,
       "spacing": 0,
-      "squareCorners": true,
+      "squareCorners": false,
       "transparency": 1,
       "visible": true,
       "widgetOutlineColor": "primary",
@@ -350,7 +366,7 @@
       "widgetOutlineThickness": 1,
       "widgetPadding": 8,
       "widgetTransparency": 1,
-      "useOverlayLayer": true,
+      "useOverlayLayer": false,
       "batteryColorMode": "theme"
     }
   ],
@@ -396,12 +412,12 @@
   },
   "clipboardClickToPaste": true,
   "clipboardEnterToPaste": true,
-  "clipboardUseOverlayLayer": true,
   "clipboardVisibleEntryActions": [
     "edit",
     "delete",
     "copy"
   ],
+  "frameEnabled": true,
   "frameThickness": 2,
   "frameRounding": 16,
   "frameColor": "surface",
