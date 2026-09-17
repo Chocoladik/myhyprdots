@@ -52,7 +52,7 @@
     home-manager
     kitty
     btop
-    #wvkbd
+    ydotool
     piper
     android-tools
     poppler-utils

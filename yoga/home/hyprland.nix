@@ -18,7 +18,6 @@
       hl.on("hyprland.start", function()
         hl.exec_cmd("rfkill unblock bluetooth")
         hl.exec_cmd("wayland-pipewire-idle-inhibit -w")
-        ---hl.exec_cmd("wvkbd-deskintl --hidden -L 360")
       end)
 
       -- =====================================================================
@@ -30,7 +29,7 @@
       hl.env("XCURSOR_SIZE", "24")
 
       -- =====================================================================
-      -- Core config (hl.config)
+      -- Core config
       -- =====================================================================
       hl.config({
         input = {
@@ -53,8 +52,6 @@
         },
         decoration = {
           active_opacity = 1.0,
-          inactive_opacity = 0.9,
-          fullscreen_opacity = 1.0,
           dim_inactive = true,
           rounding = 8,
           shadow = {
@@ -105,13 +102,9 @@
             workspace_gap = 100,
             layout = "vertical",
             wallpaper = 0,
-            blur = false,
-
+            blur = true,
             shadow = {
               enabled = false,
-              range = 50,
-              render_power = 3,
-              color = 0xee1a1a1a,
             },
           },
         },
@@ -146,7 +139,7 @@
 
       hl.plugin.hyprgrass.bind({
         pattern = { kind = "edge", origin = "down", direction = "up" },
-        action = hl.dsp.exec_cmd("pkill -SIGRTMIN wvkbd-deskintl"),
+        action = hl.dsp.exec_cmd("dms ipc call virtualKeyboard toggle"),
       })
 
       -- =====================================================================
@@ -158,7 +151,7 @@
 
       hl.gesture({
         fingers = 4,
-        direction = "up",
+        direction = "vertical",
         action = function()
           hl.dispatch(hl.plugin.scrolloverview.overview("toggle"))
         end,
@@ -222,7 +215,7 @@
       hl.window_rule({ match = { class = "steam" }, float = true })
       hl.window_rule({ match = { title = "Media viewer" }, float = true })
       hl.window_rule({ match = { title = "Blanket" }, float = true })
-      hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, no_anim = true, pin = true, no_dim = true, keep_aspect_ratio = true, decorate = false, opacity = "1.0 override"})
+      hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, no_anim = true, pin = true, no_dim = true, keep_aspect_ratio = true, decorate = false })
 
       -- =====================================================================
       -- External Lua modules
@@ -238,7 +231,7 @@
       hl.bind("Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot region edit"))
       hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
       hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
-      hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
+      hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call fullscreenPowerMenu toggle"))
 
       -- =====================================================================
       -- Keybinds: media & audio
@@ -246,17 +239,8 @@
       hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
       hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })
       hl.bind("XF86AudioNext", hl.dsp.exec_cmd("dms ipc call mpris next"), { locked = true })
-
-      hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), {
-        locked = true,
-        device = { inclusive = true, list = { "keychron-keychron-v3" } },
-      })
-
-      hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris play"), {
-        locked = true,
-        device = { inclusive = true, list = { "cmf-headphone-pro-(avrcp)", "bluez-5.86-(mcs)" } },
-      })
-
+      hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true, device = { list = {"keychron-keychron-v3"} } })
+      hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris play"), { locked = true, device = { list = {"cmf-headphone-pro-(avrcp)", "bluez-5.86-(mcs)" } } })
       hl.bind("XF86AudioPause", hl.dsp.exec_cmd("dms ipc call mpris pause"), { locked = true })
       hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("dms ipc call mpris previous"), { locked = true })
       hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 10"), { locked = true, repeating = true })
@@ -339,5 +323,5 @@
       hl.bind("SUPER + CTRL + 8", hl.dsp.window.move({ workspace = "8" }))
       hl.bind("SUPER + CTRL + 9", hl.dsp.window.move({ workspace = "9" }))
     '';
-  };
+  };  
 }

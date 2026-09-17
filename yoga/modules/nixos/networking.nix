@@ -9,6 +9,7 @@
     allowedUDPPorts = [ 5353 ];
     allowedUDPPortRanges = [
     { from = 50000; to = 65535; }
+    { from = 1714;  to = 1764;  }
   ];
   };
 

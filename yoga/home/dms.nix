@@ -20,11 +20,15 @@
       calculator.enable = true;
       emojiLauncher.enable = true;
       dankPomodoroTimer.enable = true;
+      hiddenBar.enable = true;
+      fullscreenPowerMenu.enable = true;
+      virtualKeyboard.enable = true;
+      systemMonitorPlus.enable = true;
     };
   };  
 
   xdg.configFile."DankMaterialShell/settings.json".text = '' 
-  {
+{
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "matugenScheme": "scheme-content",
@@ -192,10 +196,7 @@
   "osdAudioOutputEnabled": false,
   "powerActionConfirm": false,
   "powerMenuActions": [
-    "reboot",
-    "poweroff",
-    "suspend",
-    "restart"
+    "poweroff"
   ],
   "powerMenuDefaultAction": "poweroff",
   "powerMenuGridLayout": true,
@@ -276,6 +277,10 @@
         {
           "enabled": true,
           "id": "launcherButton"
+        },
+        {
+          "id": "privacyIndicator",
+          "enabled": true
         }
       ],
       "maximizeDetection": true,
@@ -300,6 +305,10 @@
           "enabled": true
         },
         {
+          "id": "dankKDEConnect",
+          "enabled": true
+        },
+        {
           "id": "dankPomodoroTimer",
           "enabled": true
         },
@@ -308,22 +317,18 @@
           "id": "clipboard"
         },
         {
+          "id": "hiddenBar",
+          "enabled": true
+        },
+        {
           "enabled": true,
           "id": "keyboard_layout_name",
-          "keyboardLayoutNameCompactMode": false,
+          "keyboardLayoutNameCompactMode": true,
           "keyboardLayoutNameShowIcon": false
         },
         {
-          "enabled": true,
-          "id": "cpuUsage",
-          "minimumWidth": false
-        },
-        {
-          "enabled": true,
-          "id": "memUsage",
-          "minimumWidth": false,
-          "showInGb": true,
-          "showSwap": false
+          "id": "systemMonitorPlus",
+          "enabled": true
         },
         {
           "enabled": true,
@@ -425,6 +430,6 @@
   "frameLauncherEmergeSide": "top",
   "frameBarInsetPadding": 5,
   "configVersion": 18
-}
+}  
 '';
 }

@@ -47,8 +47,9 @@
       };
     };
   };
-
+  services.fwupd.enable = true;
   programs.fuse.userAllowOther = true;
+  programs.kdeconnect.enable = true;
   environment.systemPackages = [
     pkgs.ffmpeg-full
     pkgs.libavif
