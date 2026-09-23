@@ -11,7 +11,6 @@
     ./modules/nixos/services.nix
     ./modules/nixos/users.nix
   ];
-
   # Nix Settings
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -32,7 +31,8 @@
   hardware.keyboard.qmk.enable = true;
   services.udev.packages = [ pkgs.via ];
   services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", TAG+="uaccess"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0660", TAG+="uaccess",
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
   '';
 
   programs.dsearch = {

@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./dms.nix
     ./git.nix
+    ./nvim.nix
     ./kitty.nix
     ./flatpak.nix
     ./fish.nix
@@ -24,26 +25,17 @@
     };
   };
 
-  # GTK Configuration
   gtk = {
     enable = true;
     theme = {
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-      gtk-decoration-layout = "appmenu:close";
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-      gtk-decoration-layout = "appmenu:close";
-    };
+    gtk3.extraConfig.gtk-decoration-layout = "appmenu:close";
+    gtk4.extraConfig.gtk-decoration-layout = "appmenu:close";
   };
 
-  # Environment variables
-    home.sessionVariables = {
-    GTK_THEME = "adw-gtk3-dark";
+  home.sessionVariables = {
     GTK_CSD = "1";
     COLORSCHEME = "dark";
   };
@@ -57,7 +49,7 @@
     android-tools
     poppler-utils
     ghostscript
-    vscodium
+    #vscodium
     mpv
     loupe
     img2pdf
@@ -76,7 +68,7 @@
     adw-gtk3
     adwaita-icon-theme
     qt6Packages.qt6ct
-    vesktop
+    #vesktop
     chromium
     materialgram
     spotifyd
@@ -85,6 +77,7 @@
     qbittorrent
     onlyoffice-desktopeditors
     fluent-icon-theme
+    freecad
   ];
 
   programs.home-manager.enable = true;

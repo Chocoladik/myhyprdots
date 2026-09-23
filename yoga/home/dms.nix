@@ -5,7 +5,7 @@
     inputs.dms.homeModules.dank-material-shell
     inputs.dms-plugin-registry.nixosModules.default
   ];
-
+  systemd.user.services.dms.Service.Environment = ["YDOTOOL_SOCKET=/run/user/$(id -u)/.ydotool_socket"];
   programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
@@ -15,6 +15,7 @@
     enableAudioWavelength = true;
     enableCalendarEvents = true;
     plugins = {
+      virtualKeyboard.enable = true;
       quickCapture.enable = true;
       dankKDEConnect.enable = true;
       calculator.enable = true;
@@ -22,13 +23,12 @@
       dankPomodoroTimer.enable = true;
       hiddenBar.enable = true;
       fullscreenPowerMenu.enable = true;
-      virtualKeyboard.enable = true;
       systemMonitorPlus.enable = true;
     };
   };  
 
   xdg.configFile."DankMaterialShell/settings.json".text = '' 
-{
+  {
   "currentThemeName": "dynamic",
   "currentThemeCategory": "dynamic",
   "matugenScheme": "scheme-content",
@@ -43,12 +43,13 @@
   "syncComponentAnimationSpeeds": false,
   "popoutAnimationSpeed": 2,
   "modalAnimationSpeed": 2,
+  "springBounce": 2,
+  "animationVariant": 2,
   "motionEffect": 2,
   "m3ElevationEnabled": false,
   "m3ElevationOpacity": 33,
   "popoutElevationEnabled": false,
   "barElevationEnabled": false,
-  "blurEnabled": true,
   "blurBorderColor": "secondary",
   "blurWallpaperOnOverview": true,
   "wallpaperBackgroundColorMode": "surface",
@@ -151,10 +152,14 @@
   "fadeToLockEnabled": false,
   "fadeToDpmsGracePeriod": 3,
   "terminalsAlwaysDark": true,
+  "matugenTemplateNiri": false,
   "matugenTemplateMangowc": false,
   "matugenTemplateQt5ct": false,
+  "matugenTemplateFcitx5": false,
+  "matugenTemplateQtengine": false,
   "matugenTemplateFirefox": false,
   "matugenTemplatePywalfox": false,
+  "matugenTemplateVesktop": false,
   "matugenTemplateVencord": false,
   "matugenTemplateEquibop": false,
   "matugenTemplateGhostty": false,
@@ -162,12 +167,14 @@
   "matugenTemplateAlacritty": false,
   "matugenTemplateNeovim": true,
   "matugenTemplateWezterm": false,
+  "matugenTemplateDgop": false,
+  "matugenTemplateVscode": false,
   "matugenTemplateEmacs": false,
   "matugenTemplateZed": false,
   "notificationOverlayEnabled": true,
   "notificationPopupShadowEnabled": false,
-  "notificationForegroundLayers": false,
-  "lockScreenClockStyle": "vertical",
+  "notificationPopupBodyInvokesAction": true,
+  "lockScreenShowTime": false,
   "lockScreenShowDate": false,
   "lockScreenShowProfileImage": false,
   "lockScreenShowPasswordField": false,
@@ -176,7 +183,6 @@
   "lockScreenFontFamily": "JetBrainsMono Nerd Font",
   "notificationTimeoutLow": 3000,
   "notificationPopupPosition": -1,
-  "notificationAnimationSpeed": 2,
   "notificationHistoryMaxCount": 200,
   "notificationHistoryMaxAgeDays": 1,
   "notificationHistorySaveLow": false,
@@ -192,15 +198,14 @@
   ],
   "notificationFocusedMonitor": true,
   "osdIdleInhibitorEnabled": false,
-  "osdPowerProfileEnabled": true,
-  "osdAudioOutputEnabled": false,
   "powerActionConfirm": false,
   "powerMenuActions": [
     "poweroff"
   ],
   "powerMenuDefaultAction": "poweroff",
   "powerMenuGridLayout": true,
-  "updaterIntervalSeconds": 86400,
+  "updaterIntervalSeconds": 1382023168,
+  "updaterIncludeFlatpak": false,
   "screenPreferences": {
     "dock": [
       "all"
@@ -212,10 +217,7 @@
       "all"
     ],
     "lockScreen": [
-      {
-        "name": "eDP-1",
-        "model": "0x303D"
-      }
+      "all"
     ]
   },
   "showOnLastDisplay": {
@@ -258,7 +260,7 @@
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 15,
       "gothCornersEnabled": false,
-      "hoverPopoutDelay": 121,
+      "hoverPopoutDelay": 150,
       "hoverPopouts": true,
       "iconScale": 1,
       "id": "default",
@@ -283,7 +285,7 @@
           "enabled": true
         }
       ],
-      "maximizeDetection": true,
+      "maximizeDetection": false,
       "maximizeWidgetIcons": false,
       "maximizeWidgetText": false,
       "name": "Main Bar",
@@ -323,7 +325,7 @@
         {
           "enabled": true,
           "id": "keyboard_layout_name",
-          "keyboardLayoutNameCompactMode": true,
+          "keyboardLayoutNameCompactMode": false,
           "keyboardLayoutNameShowIcon": false
         },
         {
@@ -427,9 +429,10 @@
   "frameRounding": 16,
   "frameColor": "surface",
   "frameBarSize": 50,
+  "frameBlurEnabled": false,
   "frameLauncherEmergeSide": "top",
   "frameBarInsetPadding": 5,
   "configVersion": 18
-}  
+}
 '';
 }

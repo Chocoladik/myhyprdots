@@ -1,6 +1,7 @@
 { config, pkgs, ...}: {
 xdg.configFile."matugen/config.toml".text = ''
 [config]
+
 [templates.spicetify_colorful]
 input_path = '~/.config/matugen/templates/spicetify-colorful.ini'
 output_path = '~/.config/spicetify/Themes/Colorful/color.ini'
