@@ -218,7 +218,9 @@
             -- =====================================================================
             hl.window_rule({ match = { fullscreen = 1 }, idle_inhibit = "none" })
             hl.window_rule({ match = { class = "steam" }, float = true })
+            hl.window_rule({ match = { class = "org.gnome.NautilusPreviewer" }, float = true, center = true, keep_aspect_ratio = true, decorate = false })
             hl.window_rule({ match = { title = "Media viewer" }, float = true })
+            hl.window_rule({ match = { title = "Extension" }, float = true })
             hl.window_rule({ match = { title = "Blanket" }, float = true })
             hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, no_anim = true, pin = true, no_dim = true, keep_aspect_ratio = true, decorate = false })
             hl.layer_rule({match = { namespace = "dms:(polkit|notification-center-modal|workspace-overview|color-picker|clipboard|spotlight|settings|process-list-modal)" }, blur = true, ignore_alpha = 0,})

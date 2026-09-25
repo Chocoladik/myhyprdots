@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -11,12 +16,10 @@
     ./fish.nix
     ./xournalpp.nix
     ./matugen.nix
-    inputs.areofyl-fetch.homeManagerModules.default
   ];
 
   home.username = "aktire";
   home.homeDirectory = "/home/aktire";
-  programs.fetch.enable = true;
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -49,7 +52,6 @@
     android-tools
     poppler-utils
     ghostscript
-    #vscodium
     mpv
     loupe
     img2pdf
@@ -61,10 +63,11 @@
     tesseract
     curl
     papers
-    baobab
+    #baobab
+    blanket
     xournalpp
     nautilus
-    gnome-text-editor
+    sushi
     adw-gtk3
     adwaita-icon-theme
     qt6Packages.qt6ct

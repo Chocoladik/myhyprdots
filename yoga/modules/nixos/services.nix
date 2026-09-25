@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   vtColors = pkgs.writeText "tuigreet-vtrgb" ''
@@ -38,19 +43,19 @@ in
 {
   services.flatpak.enable = true;
   services.upower.enable = true;
-  services.thermald.enable = true; 
+  services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;
   services.auto-cpufreq = {
     enable = true;
     settings = {
-	battery = {
-	  governor = "powersave";
-	  turbo = "never";
-	};
-	charger = {
-	  governor = "performance";
-	  turbo = "auto";
-	};
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
     };
   };
   services.system76-scheduler.enable = true;
@@ -88,6 +93,7 @@ in
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
+  services.accounts-daemon.enable = true;
   services.fwupd.enable = true;
   programs.fuse.userAllowOther = true;
   services.gnome.tinysparql.enable = true;
@@ -95,6 +101,7 @@ in
   programs.kdeconnect.enable = true;
   environment.systemPackages = [
     pkgs.tuigreet
+    pkgs.fetch
     pkgs.ffmpeg-full
     pkgs.libavif
     pkgs.git
@@ -104,8 +111,8 @@ in
     pkgs.fd
     pkgs.lua-language-server
     pkgs.stylua
-    pkgs.nixd   
-    pkgs.nixfmt   
+    pkgs.nixd
+    pkgs.nixfmt
     pkgs.xdg-user-dirs
     pkgs.pulseaudio
     pkgs.wayland-pipewire-idle-inhibit
@@ -115,13 +122,13 @@ in
     pkgs.pciutils
     pkgs.usbutils
     (pkgs.symlinkJoin {
-    name = "zen-browser";
-    paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/zen \
-        --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
-    '';
-  })
+      name = "zen-browser";
+      paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/zen \
+          --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
+      '';
+    })
   ];
 }
