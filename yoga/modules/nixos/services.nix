@@ -65,7 +65,6 @@ in
     cpuFreqGovernor = "powersave";
   };
   services.libinput.enable = true;
-  programs.ydotool.enable = true;
   services.gvfs.enable = true;
 
   services.ratbagd.enable = true;

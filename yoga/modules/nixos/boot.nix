@@ -20,6 +20,7 @@
     kernelPackages = pkgs.linuxPackages_cachyos;
 
     kernelParams = [
+      "quiet"
       "boot.shell_on_fail"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
@@ -29,6 +30,9 @@
     ];
 
     consoleLogLevel = 3;
-    extraModprobeConfig = ''options hid_apple fnmode=1'';
+    extraModprobeConfig = ''
+      options hid_apple fnmode=1,
+      options snd-intel-dspcfg dsp_driver=1
+    '';
   };
 }

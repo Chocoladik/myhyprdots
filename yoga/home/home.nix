@@ -43,7 +43,20 @@
     COLORSCHEME = "dark";
   };
 
+  xdg.desktopEntries.nvim-kitty = {
+    name = "Neovim";
+    exec = "kitty -e nvim %U";
+    terminal = false;
+    type = "Application";
+    icon = "vim";
+    categories = [
+      "Utility"
+      "TextEditor"
+    ];
+  };
+
   home.packages = with pkgs; [
+    #gnome-boxes
     home-manager
     kitty
     btop
@@ -61,11 +74,13 @@
     darktable
     ausweisapp
     tesseract
+    gpu-screen-recorder
     curl
     papers
     #baobab
     blanket
     xournalpp
+    obsidian
     nautilus
     sushi
     adw-gtk3

@@ -11,7 +11,7 @@
     inputs.dms-plugin-registry.nixosModules.default
   ];
   systemd.user.services.dms.Service.Environment = [
-    "YDOTOOL_SOCKET=/run/user/$(id -u)/.ydotool_socket"
+    "YDOTOOL_SOCKET=/run/user/1000/ydotool_socket"
   ];
   programs.dank-material-shell = {
     enable = true;
@@ -36,7 +36,7 @@
   };
 
   xdg.configFile."DankMaterialShell/settings.json".text = ''
-      {
+        {
       "currentThemeName": "dynamic",
       "currentThemeCategory": "dynamic",
       "matugenScheme": "scheme-content",

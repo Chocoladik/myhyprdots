@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -11,11 +16,19 @@
     ./modules/nixos/services.nix
     ./modules/nixos/users.nix
   ];
-  # Nix Settings
+
+  virtualisation.libvirtd.enable = true;
+
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
-    trusted-users = ["root" "@wheel"];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
     accept-flake-config = true;
     substituters = [
       "https://cache.nixos.org"
@@ -42,7 +55,7 @@
       target = "graphical-session.target";
     };
   };
-  
+
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
