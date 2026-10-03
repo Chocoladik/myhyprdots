@@ -96,7 +96,7 @@
               },
               plugin = {
                 hyprgrass = {
-                  sensitivity = 8.0,
+                  sensitivity = 20.0,
                   edge_margin = 20,
                   long_press_delay = 100,
                   resize_on_border_long_press = true,

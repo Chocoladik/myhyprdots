@@ -100,8 +100,8 @@ in
   programs.kdeconnect.enable = true;
   environment.systemPackages = [
     pkgs.tuigreet
-    pkgs.fetch
-    pkgs.ffmpeg-full
+    #pkgs.fetch
+    pkgs.ffmpeg
     pkgs.libavif
     pkgs.git
     pkgs.gh
