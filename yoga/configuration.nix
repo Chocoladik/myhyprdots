@@ -28,6 +28,7 @@
     trusted-users = [
       "root"
       "@wheel"
+      "aktire"
     ];
     accept-flake-config = true;
     substituters = [

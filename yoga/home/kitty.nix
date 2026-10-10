@@ -13,6 +13,7 @@
     extraConfig = ''
       include dank-tabs.conf
       include dank-theme.conf
+      remember_window_size no
     '';
   };
 }

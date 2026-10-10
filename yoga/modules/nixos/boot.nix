@@ -19,6 +19,8 @@
 
     kernelPackages = pkgs.linuxPackages_cachyos;
 
+    resumeDevice = "/dev/disk/by-uuid/b1c7a39a-2d0b-461e-b8c3-470a8d0075e7";
+
     kernelParams = [
       "quiet"
       "boot.shell_on_fail"
@@ -32,7 +34,6 @@
     consoleLogLevel = 3;
     extraModprobeConfig = ''
       options hid_apple fnmode=1,
-      options snd-intel-dspcfg dsp_driver=1
     '';
   };
 }

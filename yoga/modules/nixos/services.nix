@@ -29,7 +29,7 @@ let
     set -e
     ${pkgs.kbd}/bin/setvtrgb ${vtColors}
     exec ${pkgs.tuigreet}/bin/tuigreet \
-      --remember-session \
+      --remember-user-session \
       --remember \
       --asterisks \
       --width 46 \
@@ -71,7 +71,7 @@ in
   services.devmon.enable = true;
   services.hardware.openrgb.enable = true;
 
-  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.enable = false;
   services.spotifyd.enable = false;
 
   services.pipewire = {
@@ -79,6 +79,7 @@ in
     pulse.enable = true;
     wireplumber.enable = true;
   };
+  programs.gpu-screen-recorder.enable = true;
 
   services.greetd = {
     enable = true;
@@ -98,36 +99,32 @@ in
   services.gnome.tinysparql.enable = true;
   services.gnome.localsearch.enable = true;
   programs.kdeconnect.enable = true;
-  environment.systemPackages = [
-    pkgs.tuigreet
-    #pkgs.fetch
-    pkgs.ffmpeg
-    pkgs.libavif
-    pkgs.git
-    pkgs.gh
-    pkgs.neovim
-    pkgs.ripgrep
-    pkgs.fd
-    pkgs.lua-language-server
-    pkgs.stylua
-    pkgs.nixd
-    pkgs.nixfmt
-    pkgs.xdg-user-dirs
-    pkgs.pulseaudio
-    pkgs.wayland-pipewire-idle-inhibit
-    pkgs.glib
-    pkgs.gsettings-desktop-schemas
-    pkgs.openrgb
-    pkgs.pciutils
-    pkgs.usbutils
-    (pkgs.symlinkJoin {
-      name = "zen-browser";
-      paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/zen \
-          --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
-      '';
-    })
+  environment.systemPackages = with pkgs; [
+    tuigreet
+    fetch
+    ffmpeg-full
+    libavif
+    git
+    gh
+    neovim
+    ripgrep
+    fd
+    lua-language-server
+    stylua
+    nixd
+    nixfmt
+    clang-tools
+    cmake
+    cmake-language-server
+    gdb
+    gcc
+    xdg-user-dirs
+    pulseaudio
+    wayland-pipewire-idle-inhibit
+    glib
+    gsettings-desktop-schemas
+    openrgb
+    pciutils
+    usbutils
   ];
 }

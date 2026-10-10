@@ -12,9 +12,22 @@
     plugins = with pkgs.vimPlugins; [
       blink-cmp
       (nvim-treesitter.withPlugins (p: [
-        p.lua p.luadoc p.vim p.vimdoc p.query
-        p.nix p.bash p.fish p.json p.yaml p.toml
-        p.markdown p.markdown_inline
+        p.lua
+        p.luadoc
+        p.vim
+        p.vimdoc
+        p.query
+        p.nix
+        p.bash
+        p.fish
+        p.json
+        p.yaml
+        p.toml
+        p.markdown
+        p.markdown_inline
+        p.cpp
+        p.c
+        p.cmake
       ]))
     ];
 
@@ -104,11 +117,35 @@
         filetypes = { "nix" },
         root_markers = { "flake.nix", ".git" },
       })
-      vim.lsp.enable({ "lua_ls", "nixd" })
+
+      vim.lsp.config("clangd", {
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+        },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", "CMakeLists.txt", ".git" },
+      })
+
+      vim.lsp.config("cmake_language_server", {
+        cmd = { "cmake-language-server" },
+        filetypes = { "cmake" },
+        root_markers = { "CMakeLists.txt", ".git" },
+      })
+
+      vim.lsp.enable({ "lua_ls", "nixd", "clangd", "cmake_language_server" })
       vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 
       require("conform").setup({
-        formatters_by_ft = { lua = { "stylua" }, nix = { "nixfmt" } },
+        formatters_by_ft = {
+          lua = { "stylua" },
+          nix = { "nixfmt" },
+          c = { "clang-format" },
+          cpp = { "clang-format" },
+        },
         format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
       })
 

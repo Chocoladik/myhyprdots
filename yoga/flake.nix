@@ -1,29 +1,27 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
     };
 
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
+
     scrolloverview = {
       url = "github:yayuuu/hyprland-scroll-overview/new-release";
       inputs.hyprland.follows = "hyprland";
     };
 
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -35,7 +33,6 @@
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
     };
-
   };
 
   outputs =

@@ -14,7 +14,7 @@
 
     [templates.browser]
     input_path = '~/.config/matugen/templates/firefox-colors.css'
-    output_path = '~/.config/zen/ds2xcm2v.Default Profile/chrome/colors.css'
+    output_path = '~/.config/zen/10fbz8qq.Default Profile/chrome/colors.css'
 
     [templates.obsidian]
     input_path = '~/.config/matugen/templates/obsidian.css'
@@ -22,7 +22,7 @@
   '';
 
   xdg.configFile."matugen/templates/spicetify-colorful.ini".text = ''
-    [noctalia]
+    [matugen]
     text               = {{colors.on_surface.default.hex_stripped}}
     subtext            = {{colors.on_surface_variant.default.hex_stripped}}
     main               = {{colors.surface.default.hex_stripped}}
@@ -107,13 +107,13 @@
     }
   '';
 
-  xdg.configFile."zen/ds2xcm2v.Default Profile/chrome/userContent.css".text = ''
-    @import url("/home/aktire/.config/zen/ds2xcm2v.Default Profile/chrome/colors.css");
-    @import url("/home/aktire/.config/zen/ds2xcm2v.Default Profile/chrome/github.css");
-    @import url("/home/aktire/.config/zen/ds2xcm2v.Default Profile/chrome/youtube.css");
+  xdg.configFile."zen/10fbz8qq.Default Profile/chrome/userContent.css".text = ''
+    @import url("/home/aktire/.config/zen/10fbz8qq.Default Profile/chrome/colors.css");
+    @import url("/home/aktire/.config/zen/10fbz8qq.Default Profile/chrome/github.css");
+    @import url("/home/aktire/.config/zen/10fbz8qq.Default Profile/chrome/youtube.css");
   '';
 
-  xdg.configFile."zen/ds2xcm2v.Default Profile/chrome/github.css".text = ''
+  xdg.configFile."zen/10fbz8qq.Default Profile/chrome/github.css".text = ''
     @-moz-document domain("github.com") {
         :root {
             --bgColor-default: var(--background) !important;
@@ -176,7 +176,7 @@
     }
   '';
 
-  xdg.configFile."zen/ds2xcm2v.Default Profile/chrome/youtube.css".text = ''
+  xdg.configFile."zen/10fbz8qq.Default Profile/chrome/youtube.css".text = ''
     @-moz-document domain("youtube.com") {
 
         :root, [dark], [light] {

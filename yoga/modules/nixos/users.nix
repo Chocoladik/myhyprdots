@@ -8,6 +8,7 @@
       "render"
       "input"
       "uinput"
+      "network"
     ];
   };
 }

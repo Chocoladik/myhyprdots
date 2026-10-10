@@ -56,7 +56,6 @@
   };
 
   home.packages = with pkgs; [
-    #gnome-boxes
     home-manager
     kitty
     btop
@@ -74,10 +73,8 @@
     darktable
     ausweisapp
     tesseract
-    gpu-screen-recorder
     curl
     papers
-    #baobab
     blanket
     xournalpp
     obsidian
@@ -86,15 +83,22 @@
     adw-gtk3
     adwaita-icon-theme
     qt6Packages.qt6ct
-    #vesktop
     chromium
+    (symlinkJoin {
+      name = "zen-browser";
+      paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/zen \
+          --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
+      '';
+    })
     materialgram
     spotifyd
     spicetify-cli
     mullvad
     qbittorrent
-    onlyoffice-desktopeditors
-    fluent-icon-theme
+    libreoffice
     freecad
   ];
 

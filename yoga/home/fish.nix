@@ -18,12 +18,12 @@
     functions = {
       fish_prompt = ''
         set -l last_status $status
-        set_color 8a8a8a
+        set_color e1e1e1
         echo -n (prompt_pwd)
         if test $last_status -eq 0
             set_color --bold ffffff
         else
-            set_color 959595
+            set_color e1e1e1 
         end
         echo -n " |-/ "
         set_color normal

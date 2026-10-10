@@ -6,20 +6,21 @@
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
     withUWSM = true;
   };
-
+  programs.xwayland.package = pkgs.xwayland;
 
   qt.enable = true;
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config = {
-      hyprland.default = ["hyprland"];
-      common.default = ["gtk"];
-      gtk.default = ["gtk"];
+      hyprland.default = [ "hyprland" ];
+      common.default = [ "gtk" ];
+      gtk.default = [ "gtk" ];
     };
   };
 
