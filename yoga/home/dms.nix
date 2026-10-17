@@ -405,20 +405,24 @@
           "small": false
         },
         {
+          "enabled": true,
+          "id": "brightnessSlider",
+          "w": 4,
+          "h": 1,
+          "col": 0,
+          "row": 3.5
+        },
+        {
           "id": "user",
           "enabled": true,
           "w": 1,
           "h": 1,
           "col": 4,
           "row": 3.5,
-          "footerW": 1,
-          "footerFill": true,
           "background": true,
           "badge": true,
           "hostname": true,
-          "compositor": true,
-          "footer": true,
-          "footerEnd": true
+          "compositor": true
         },
         {
           "id": "edit",
@@ -426,11 +430,8 @@
           "w": 1,
           "h": 1,
           "small": false,
-          "col": 4,
-          "row": 0,
-          "footerW": 1,
-          "footer": true,
-          "footerEnd": true
+          "col": 5,
+          "row": 3.5
         },
         {
           "id": "lock",
@@ -438,11 +439,8 @@
           "w": 1,
           "h": 1,
           "small": false,
-          "col": 4.5,
-          "row": 4,
-          "footerW": 1,
-          "footer": true,
-          "footerEnd": true
+          "col": 6,
+          "row": 3.5
         },
         {
           "id": "power",
@@ -450,29 +448,22 @@
           "w": 1,
           "h": 1,
           "small": false,
-          "col": 3.5,
-          "row": 4,
-          "footerW": 1,
-          "footer": true,
-          "footerEnd": true
-        },
-        {
-          "enabled": true,
-          "id": "brightnessSlider",
-          "w": 8,
-          "h": 1,
-          "col": 0,
-          "row": 5,
-          "footerW": 4,
-          "footer": true
+          "col": 7,
+          "row": 3.5
         }
       ],
       "scrollTitleEnabled": false,
       "audioWheelScrollAmount": 2,
+      "bluetoothMprisEnabled": true,
+      "mediaExcludePlayers": [
+        "com.ayugram",
+        "chromium-browser",
+        "org.torproject.torbrowser-launcher"
+      ],
       "appIdSubstitutions": [],
       "centeringMode": "geometric",
       "clockDateFormat": "ddd d",
-      "appLauncherGridColumns": 5,
+      "appLauncherGridColumns": 4,
       "spotlightSectionViewModes": {
         "apps": "grid",
         "settings": "list"
@@ -480,50 +471,83 @@
       "appDrawerSectionViewModes": {
         "apps": "grid"
       },
+      "dankLauncherV2Size": "micro",
       "dankLauncherV2ShowSourceBadges": false,
       "dankLauncherV2BorderEnabled": true,
       "dankLauncherV2BorderColor": "secondary",
-      "dashTabsEvenlySpaced": false,
+      "dashTabPosition": "left",
+      "dashTabsEvenlySpaced": true,
       "dashTabs": [
         {
           "id": "overview",
-          "enabled": false
+          "enabled": true
+        },
+        {
+          "id": "weather",
+          "enabled": true
+        },
+        {
+          "id": "wellbeing",
+          "enabled": true
+        },
+        {
+          "id": "wallpaper",
+          "enabled": true
         },
         {
           "id": "media",
           "enabled": false
         },
         {
-          "id": "weather",
-          "enabled": false
-        },
-        {
-          "id": "wallpaper",
+          "id": "notifications",
           "enabled": false
         },
         {
           "id": "settings",
           "enabled": false
-        },
+        }
+      ],
+      "dashCards": [
         {
-          "id": "wellbeing",
-          "enabled": false
+          "id": "clock",
+          "w": 1,
+          "h": 2,
+          "col": 0,
+          "row": 0
         },
         {
           "id": "notifications",
-          "enabled": false
+          "w": 3,
+          "h": 5,
+          "col": 3,
+          "row": 0
+        },
+        {
+          "id": "calendar",
+          "w": 3,
+          "h": 3,
+          "col": 0,
+          "row": 2
+        },
+        {
+          "id": "media",
+          "w": 2,
+          "h": 2,
+          "col": 1,
+          "row": 0
         }
       ],
       "dashOptions": {
         "media": {
+          "animatedArt": true,
+          "playerStyle": "material",
+          "titleFont": "Notable",
           "albumArtAccent": false,
-          "lyrics": false,
-          "albumArtBackdrop": false,
+          "panelRows": 5,
           "deviceName": false
         },
         "wallpaper": {
-          "filename": false,
-          "panelColumns": 5
+          "filename": false
         }
       },
       "networkPreference": "ethernet",
@@ -744,7 +768,7 @@
             "all"
           ],
           "scrollEnabled": false,
-          "scrollXBehavior": "column",
+          "scrollXBehavior": "focusWindow",
           "scrollYBehavior": "workspace",
           "shadowColorMode": "text",
           "shadowCustomColor": "#000000",
@@ -895,7 +919,7 @@
             "all"
           ],
           "scrollEnabled": false,
-          "scrollXBehavior": "column",
+          "scrollXBehavior": "focusWindow",
           "scrollYBehavior": "workspace",
           "shadowColorMode": "text",
           "shadowCustomColor": "#000000",
@@ -949,7 +973,7 @@
       "frameBlurEnabled": false,
       "frameLauncherEmergeSide": "top",
       "frameBarInsetPadding": 12,
-      "configVersion": 39
+      "configVersion": 42
     }
   '';
 }

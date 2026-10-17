@@ -8,7 +8,7 @@
     systemd.enable = false;
     plugins = [
       inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
-      #inputs.scrolloverview.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.scrolloverview.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     extraConfig = ''
@@ -61,11 +61,11 @@
                      enabled = false,
                      size = 10,
                      passes = 4,
-         	    	  ignore_opacity = true,
-      		  noise = 0.02,
-         	    	  contrast = 1.1,
-         	    	  vibrancy = 0.2,
-         	    	  vibrancy_darkness = 0.3,
+         	    	     ignore_opacity = true,
+      	         	   noise = 0.02,
+         	    	     contrast = 1.1,
+         	    	     vibrancy = 0.2,
+         	    	     vibrancy_darkness = 0.3,
                      xray = false,
                      popups = true,
                    },
@@ -96,14 +96,14 @@
                  },
                  plugin = {
                    hyprgrass = {
-                     sensitivity = 20.0,
-                     edge_margin = 20,
+                     sensitivity = 8.0,
+                     edge_margin = 30,
                      long_press_delay = 100,
                      resize_on_border_long_press = true,
                    },
-                     --[[ scrolloverview = {
+                     scrolloverview = {
                      gesture_distance = 300,
-                     scale = 0.6,
+                     scale = 0.5,
                      workspace_gap = 100,
                      layout = "vertical",
                      wallpaper = 0,
@@ -111,7 +111,7 @@
                      shadow = {
                        enabled = false,
                      },
-                   }, ]]
+                   },
                  },
                })
 
@@ -119,7 +119,7 @@
                -- Plugin: hyprgrass
                -- =====================================================================
                hl.plugin.hyprgrass.gesture({
-                 pattern = { kind = "swipe", fingers = 3, direction = "vertical" },
+                 pattern = { kind = "swipe", fingers = 4, direction = "vertical" },
                  action = "workspace",
                })
 
@@ -133,12 +133,12 @@
                })
 
                hl.plugin.hyprgrass.bind({
-                 pattern = { kind = "pinch", fingers = 4, direction = "pinchin" },
+                 pattern = { kind = "pinch", fingers = 5, direction = "pinchin" },
                  action = hl.dsp.window.fullscreen({ mode = "fullscreen", action = toggle }),
                })
 
                hl.plugin.hyprgrass.bind({
-                 pattern = { kind = "pinch", fingers = 4, direction = "pinchout" },
+                 pattern = { kind = "pinch", fingers = 5, direction = "pinchout" },
                  action = hl.dsp.window.close({}),
                })
 
@@ -192,7 +192,6 @@
                hl.animation({ leaf = "workspaces", enabled = true, speed = 1, spring = "rubber", style = "slidevert" })
                hl.animation({ leaf = "windowsMove", enabled = true, speed = 6, spring = "rubber", style = "gnomed" })
                hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "default" })
-               hl.animation({ leaf = "border", enabled = false })
 
                -- =====================================================================
                -- Trackpad gestures 
@@ -223,7 +222,7 @@
                hl.window_rule({ match = { title = "Blanket" }, float = true })
                hl.window_rule({ match = { title = "Picture-in-Picture" }, float = true, no_anim = true, pin = true, no_dim = true, keep_aspect_ratio = true, decorate = false })
                hl.layer_rule({match = { namespace = "dms:(polkit|notification-center-modal|workspace-overview|color-picker|clipboard|spotlight|settings|process-list-modal)" }, blur = true, ignore_alpha = 0,})
-         hl.layer_rule({ match = { namespace = "dms:(bar|tooltip|toast|dock-context-menu|tray-menu-window|control-center|notification-center-popout|dash|process-list-popout|battery|popout|app-launcher)" }, blur = true, ignore_alpha = 0,})
+               hl.layer_rule({ match = { namespace = "dms:(bar|tooltip|toast|dock-context-menu|tray-menu-window|control-center|notification-center-popout|dash|process-list-popout|battery|popout|app-launcher)" }, blur = true, ignore_alpha = 0,})
 
                -- =====================================================================
                -- External Lua modules

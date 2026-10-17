@@ -42,6 +42,8 @@ in
 
 {
   services.flatpak.enable = true;
+  programs.appimage.enable = true;
+
   services.upower.enable = true;
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;
@@ -58,27 +60,30 @@ in
       };
     };
   };
+
   services.system76-scheduler.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
     cpuFreqGovernor = "powersave";
   };
+
   services.libinput.enable = true;
   services.gvfs.enable = true;
-
-  services.ratbagd.enable = true;
   services.devmon.enable = true;
-  services.hardware.openrgb.enable = true;
+  services.ratbagd.enable = true;
+  services.hardware.openrgb.enable = false;
 
   services.mullvad-vpn.enable = false;
   services.spotifyd.enable = false;
+  programs.steam.enable = true;
 
   services.pipewire = {
     enable = true;
     pulse.enable = true;
     wireplumber.enable = true;
   };
+
   programs.gpu-screen-recorder.enable = true;
 
   services.greetd = {
@@ -99,6 +104,7 @@ in
   services.gnome.tinysparql.enable = true;
   services.gnome.localsearch.enable = true;
   programs.kdeconnect.enable = true;
+
   environment.systemPackages = with pkgs; [
     tuigreet
     fetch

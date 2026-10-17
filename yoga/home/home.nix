@@ -93,12 +93,12 @@
           --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
       '';
     })
-    materialgram
+    ayugram-desktop
     spotifyd
     spicetify-cli
     mullvad
     qbittorrent
-    libreoffice
+    euro-office-desktopeditors
     freecad
   ];
 
