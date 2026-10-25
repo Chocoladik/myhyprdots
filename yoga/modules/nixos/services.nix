@@ -29,8 +29,8 @@ let
     set -e
     ${pkgs.kbd}/bin/setvtrgb ${vtColors}
     exec ${pkgs.tuigreet}/bin/tuigreet \
-      --remember-user-session \
       --remember \
+      --cmd "uwsm start start-hyprland" \
       --asterisks \
       --width 46 \
       --container-padding 3 \
@@ -42,7 +42,7 @@ in
 
 {
   services.flatpak.enable = true;
-  programs.appimage.enable = true;
+  #programs.appimage.enable = true;
 
   services.upower.enable = true;
   services.thermald.enable = true;
@@ -72,10 +72,10 @@ in
   services.gvfs.enable = true;
   services.devmon.enable = true;
   services.ratbagd.enable = true;
-  services.hardware.openrgb.enable = false;
+  #services.hardware.openrgb.enable = true;
 
-  services.mullvad-vpn.enable = false;
-  services.spotifyd.enable = false;
+  #services.mullvad-vpn.enable = true;
+  #services.spotifyd.enable = true;
   programs.steam.enable = true;
 
   services.pipewire = {

@@ -6,6 +6,8 @@
 }:
 
 {
+  programs.home-manager.enable = true;
+
   imports = [
     ./hyprland.nix
     ./dms.nix
@@ -20,6 +22,7 @@
 
   home.username = "aktire";
   home.homeDirectory = "/home/aktire";
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -54,7 +57,6 @@
       "TextEditor"
     ];
   };
-
   home.packages = with pkgs; [
     home-manager
     kitty
@@ -75,6 +77,7 @@
     tesseract
     curl
     papers
+    onlyoffice-desktopeditors
     blanket
     xournalpp
     obsidian
@@ -84,24 +87,12 @@
     adwaita-icon-theme
     qt6Packages.qt6ct
     chromium
-    (symlinkJoin {
-      name = "zen-browser";
-      paths = [ inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/zen \
-          --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg.lib ]}
-      '';
-    })
     ayugram-desktop
     spotifyd
     spicetify-cli
     mullvad
     qbittorrent
-    euro-office-desktopeditors
-    freecad
   ];
 
-  programs.home-manager.enable = true;
   home.stateVersion = "26.05";
 }

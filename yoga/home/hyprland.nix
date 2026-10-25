@@ -8,7 +8,6 @@
     systemd.enable = false;
     plugins = [
       inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.scrolloverview.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     extraConfig = ''
@@ -101,17 +100,6 @@
                      long_press_delay = 100,
                      resize_on_border_long_press = true,
                    },
-                     scrolloverview = {
-                     gesture_distance = 300,
-                     scale = 0.5,
-                     workspace_gap = 100,
-                     layout = "vertical",
-                     wallpaper = 0,
-                     blur = true,
-                     shadow = {
-                       enabled = false,
-                     },
-                   },
                  },
                })
 
@@ -119,7 +107,7 @@
                -- Plugin: hyprgrass
                -- =====================================================================
                hl.plugin.hyprgrass.gesture({
-                 pattern = { kind = "swipe", fingers = 4, direction = "vertical" },
+                 pattern = { kind = "swipe", fingers = 3, direction = "vertical" },
                  action = "workspace",
                })
 
@@ -133,33 +121,18 @@
                })
 
                hl.plugin.hyprgrass.bind({
-                 pattern = { kind = "pinch", fingers = 5, direction = "pinchin" },
+                 pattern = { kind = "pinch", fingers = 4, direction = "pinchin" },
                  action = hl.dsp.window.fullscreen({ mode = "fullscreen", action = toggle }),
                })
 
                hl.plugin.hyprgrass.bind({
-                 pattern = { kind = "pinch", fingers = 5, direction = "pinchout" },
+                 pattern = { kind = "pinch", fingers = 4, direction = "pinchout" },
                  action = hl.dsp.window.close({}),
                })
 
                hl.plugin.hyprgrass.bind({
                  pattern = { kind = "edge", origin = "down", direction = "up" },
                  action = hl.dsp.exec_cmd("dms ipc call virtualKeyboard toggle"),
-               })
-
-               -- =====================================================================
-               -- Plugin: scrolloverview
-               -- =====================================================================
-               hl.bind("XF86Launch5", function()
-                 hl.plugin.scrolloverview.overview("toggle")
-               end)
-
-               hl.gesture({
-                 fingers = 4,
-                 direction = "vertical",
-                 action = function()
-                   hl.dispatch(hl.plugin.scrolloverview.overview("toggle"))
-                 end,
                })
 
                -- =====================================================================
@@ -236,7 +209,7 @@
                hl.bind("CTRL + Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot full edit"))
                hl.bind("SUPER + Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot window edit"))
                hl.bind("Print", hl.dsp.exec_cmd("dms ipc call quickCapture screenshot region edit"))
-               hl.bind("SUPER + N", hl.dsp.exec_cmd("nautilus"))
+               hl.bind("SUPER + F", hl.dsp.exec_cmd("nautilus"))
                hl.bind("SUPER + ALT + N", hl.dsp.exec_cmd("nautilus -q; nautilus & "))
                hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
                hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc call fullscreenPowerMenu toggle"))
@@ -271,7 +244,7 @@
                hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
                hl.bind("SUPER + W", hl.dsp.exec_cmd("dms ipc call dankdash wallpaper"))
                hl.bind("SUPER + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
-
+               hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notepad open"))
                hl.bind("SUPER + Space", hl.dsp.exec_cmd("hyprctl switchxkblayout at-translated-set-2-keyboard next"), { locked = true })
 
                hl.bind("SUPER + G", function()
@@ -288,7 +261,7 @@
                hl.bind("SUPER + Right", hl.dsp.layout( "focus right" ))
                hl.bind("SUPER + Down", hl.dsp.layout( "focus down" ))
                hl.bind("SUPER + Up", hl.dsp.layout( "focus up" ))
-               hl.bind("SUPER + F", hl.dsp.layout("fit active"))
+               hl.bind("SUPER + M", hl.dsp.layout("fit active"))
                hl.bind("SUPER + U", hl.dsp.layout("consume_or_expel prev"))
                hl.bind("SUPER + I", hl.dsp.layout("consume_or_expel next"))
                hl.bind("SUPER + SHIFT + Left", hl.dsp.layout("swapcol l"))

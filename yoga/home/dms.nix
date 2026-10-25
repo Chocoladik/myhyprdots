@@ -1,6 +1,4 @@
 {
-  config,
-  pkgs,
   inputs,
   ...
 }:
@@ -9,6 +7,7 @@
   imports = [
     inputs.dms.homeModules.dank-material-shell
     inputs.dms-plugin-registry.nixosModules.default
+    #inputs.dcal.homeModules.dank-calendar
   ];
   systemd.user.services.dms.Service.Environment = [
     "YDOTOOL_SOCKET=/run/user/1000/ydotool_socket"
@@ -20,7 +19,7 @@
     enableVPN = true;
     enableDynamicTheming = true;
     enableAudioWavelength = true;
-    enableCalendarEvents = true;
+    enableCalendarEvents = false;
     plugins = {
       virtualKeyboard.enable = true;
       quickCapture.enable = true;
@@ -30,7 +29,6 @@
       dankPomodoroTimer.enable = true;
       fullscreenPowerMenu.enable = true;
       systemMonitorPlus.enable = true;
-      openrgbThemeSync.enable = true;
     };
   };
 
@@ -43,24 +41,22 @@
           "enabled": true,
           "config": {
             "displayPreferences": [
-              {
-                "name": "eDP-1",
-                "model": "0x303D"
-              }
+              "all"
             ],
             "syncPositionAcrossScreens": true,
             "style": "expressive",
             "transparency": 0,
             "weight": 0,
-            "twoTone": true,
+            "twoTone": false,
             "showDate": false,
             "showDigitalSeconds": false,
             "showAnalogNumbers": false,
             "showAnalogSeconds": true,
-            "autoPosition": true,
-            "colorMode": "default",
+            "autoPosition": false,
+            "colorMode": "secondary",
             "customColor": "#ffffff",
-            "fontFamily": ""
+            "fontFamily": "",
+            "rounded": false
           }
         },
         {
@@ -73,7 +69,7 @@
             ],
             "syncPositionAcrossScreens": true,
             "format": "long",
-            "colorMode": "default",
+            "colorMode": "secondary",
             "customColor": "#ffffff"
           }
         },
@@ -86,8 +82,8 @@
               "all"
             ],
             "syncPositionAcrossScreens": true,
-            "style": "ring",
-            "profileVisibility": "typing",
+            "style": "dots",
+            "profileVisibility": "never",
             "passwordVisibility": "typing"
           }
         },
@@ -113,8 +109,8 @@
             ],
             "syncPositionAcrossScreens": true,
             "showMediaPlayer": false,
-            "showWeather": false,
-            "background": true
+            "showWeather": true,
+            "background": false
           }
         },
         {
@@ -126,7 +122,7 @@
               "all"
             ],
             "syncPositionAcrossScreens": true,
-            "shape": "cookie9"
+            "shape": "round"
           }
         }
       ],
@@ -137,24 +133,22 @@
           "enabled": true,
           "config": {
             "displayPreferences": [
-              {
-                "name": "eDP-1",
-                "model": "0x303D"
-              }
+              "all"
             ],
             "syncPositionAcrossScreens": true,
             "style": "expressive",
             "transparency": 0,
             "weight": 0,
-            "twoTone": true,
+            "twoTone": false,
             "showDate": false,
             "showDigitalSeconds": false,
             "showAnalogNumbers": false,
             "showAnalogSeconds": true,
-            "autoPosition": true,
-            "colorMode": "default",
+            "autoPosition": false,
+            "colorMode": "secondary",
             "customColor": "#ffffff",
-            "fontFamily": ""
+            "fontFamily": "",
+            "rounded": false
           }
         },
         {
@@ -167,7 +161,7 @@
             ],
             "syncPositionAcrossScreens": true,
             "format": "long",
-            "colorMode": "default",
+            "colorMode": "secondary",
             "customColor": "#ffffff"
           }
         },
@@ -180,8 +174,8 @@
               "all"
             ],
             "syncPositionAcrossScreens": true,
-            "style": "ring",
-            "profileVisibility": "typing",
+            "style": "dots",
+            "profileVisibility": "never",
             "passwordVisibility": "typing"
           }
         },
@@ -195,8 +189,8 @@
             ],
             "syncPositionAcrossScreens": true,
             "showMediaPlayer": false,
-            "showWeather": false,
-            "background": true
+            "showWeather": true,
+            "background": false
           }
         },
         {
@@ -208,7 +202,7 @@
               "all"
             ],
             "syncPositionAcrossScreens": true,
-            "shape": "cookie9"
+            "shape": "round"
           }
         },
         {
@@ -228,16 +222,17 @@
       "clockFormat": "24h",
       "showSeconds": true,
       "animationDuration": 500,
-      "enableRippleEffects": false,
+      "enableRippleEffects": true,
       "popoutElevationEnabled": false,
       "blurBorderColor": "secondary",
       "wallpaperBackgroundColorMode": "surface",
+      "useAutoLocation": true,
       "fontFamily": "Google Sans Flex Medium",
       "monoFontFamily": "JetBrains Mono",
       "textRenderType": 1,
       "textRenderQuality": 4,
       "lockScreenShowPowerActions": true,
-      "lockScreenShowWeather": false,
+      "lockScreenShowWeather": true,
       "lockScreenFontFamily": "Notable",
       "powerActionConfirm": false,
       "powerMenuActions": [
@@ -330,6 +325,7 @@
       "windSpeedUnit": "ms",
       "popoutAnimationDuration": 300,
       "modalAnimationDuration": 300,
+      "reduceMotion": false,
       "motionEffect": 2,
       "m3ElevationEnabled": false,
       "m3ElevationOpacity": 33,
@@ -532,22 +528,88 @@
         {
           "id": "media",
           "w": 2,
-          "h": 2,
+          "h": 1,
           "col": 1,
-          "row": 0
+          "row": 1
+        },
+        {
+          "id": "wellbeing",
+          "w": 2,
+          "h": 1
         }
       ],
       "dashOptions": {
         "media": {
-          "animatedArt": true,
           "playerStyle": "material",
           "titleFont": "Notable",
-          "albumArtAccent": false,
           "panelRows": 5,
-          "deviceName": false
+          "deviceName": false,
+          "albumArtBackdrop": false,
+          "albumArtAccent": false
         },
         "wallpaper": {
-          "filename": false
+          "filename": false,
+          "panelRows": 5
+        },
+        "wellbeing": {
+          "panelRows": 5
+        },
+        "weather": {
+          "widgets": [
+            {
+              "id": "conditions",
+              "w": 2,
+              "h": 2,
+              "tone": "primary",
+              "city": false,
+              "col": 0,
+              "row": 0
+            },
+            {
+              "id": "hourly",
+              "w": 2,
+              "h": 2,
+              "forecast": "chart",
+              "col": 2,
+              "row": 0
+            },
+            {
+              "id": "wind",
+              "w": 1,
+              "h": 2,
+              "graphics": true,
+              "tone": "",
+              "col": 1,
+              "row": 2
+            },
+            {
+              "id": "pressure",
+              "w": 1,
+              "h": 2,
+              "graphics": true,
+              "tone": "",
+              "col": 3,
+              "row": 2
+            },
+            {
+              "id": "precipitation",
+              "w": 1,
+              "h": 2,
+              "graphics": true,
+              "tone": "",
+              "col": 0,
+              "row": 2
+            },
+            {
+              "id": "uv",
+              "w": 1,
+              "h": 2,
+              "graphics": true,
+              "tone": "",
+              "col": 2,
+              "row": 2
+            }
+          ]
         }
       },
       "networkPreference": "ethernet",
@@ -598,7 +660,7 @@
       "notificationPopupBodyInvokesAction": true,
       "lockScreenPowerOffMonitorsOnLock": true,
       "notificationTimeoutLow": 3000,
-      "notificationCompactMode": true,
+      "notificationCompactMode": false,
       "notificationPopupPosition": -1,
       "notificationHistoryMaxCount": 200,
       "notificationHistoryMaxAgeDays": 1,

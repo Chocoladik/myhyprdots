@@ -1,8 +1,12 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   networking.hostName = "YOGA";
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [ networkmanager-openconnect ];
+  };
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 57621 ];

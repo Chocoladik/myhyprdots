@@ -21,17 +21,20 @@
     };
 
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:duxlabs-dev/dux-shell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    /*
+      dcal = {
+        url = "github:duxlabs-dev/dux-calendar";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+    */
 
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
     };
   };
 
@@ -46,8 +49,8 @@
       hyprgrass,
       scrolloverview,
       dms,
+      #dcal,
       dms-plugin-registry,
-      zen-browser,
       ...
     }@inputs:
     {
@@ -58,9 +61,9 @@
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
+            home-manager.nixosModules.home-manager
             chaotic.nixosModules.default
             dms.nixosModules.dank-material-shell
-            home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -68,6 +71,7 @@
               home-manager.users.aktire = import ./home/home.nix;
               home-manager.sharedModules = [
                 nix-flatpak.homeManagerModules.nix-flatpak
+                #dfiles.homeModules.dux-files
               ];
             }
           ];

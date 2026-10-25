@@ -11,10 +11,9 @@
     };
 
     loader.systemd-boot.enable = true;
+    loader.systemd-boot.configurationLimit = 3;
     loader.timeout = 0;
     loader.efi.canTouchEfiVariables = true;
-    initrd.systemd.enable = true;
-    initrd.verbose = false;
     initrd.kernelModules = [ "i915" ];
 
     kernelPackages = pkgs.linuxPackages_cachyos;
